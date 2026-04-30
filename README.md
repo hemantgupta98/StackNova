@@ -115,7 +115,7 @@ Feel free to connect!
 
 📧 Email: hr.stacknova@gmail.com
 🌐 Website: Coming Soon
-💼 LinkedIn: https://in.linkedin.com/company/stacknova-in
+💼 LinkedIn: https://www.linkedin.com/company/stacknova-in
 
 ---
 
