@@ -29,8 +29,8 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="StackNova Logo"
-            height={50}
-            width={50}
+            height={100}
+            width={100}
             className="h-12 w-auto"
           />
         </Link>
