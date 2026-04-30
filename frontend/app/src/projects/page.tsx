@@ -6,25 +6,6 @@ export default function Home() {
   return (
     <main className="bg-white text-gray-900 min-h-screen">
       {/* Navbar */}
-      <header className="flex justify-between items-center px-6 py-4 shadow-sm">
-        <h1 className="text-xl font-bold text-blue-600">StackNova</h1>
-
-        <nav className="hidden md:flex gap-6 text-gray-700">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#" className="font-semibold text-blue-600">
-            Projects
-          </a>
-          <a href="#">Pricing</a>
-          <a href="#">Team</a>
-          <a href="#">Contact</a>
-        </nav>
-
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">
-          Let’s Talk
-        </button>
-      </header>
 
       {/* Hero Section */}
       <section className="text-center py-16 px-6">
@@ -110,9 +91,7 @@ export default function Home() {
 
           {/* Showcase */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">
-              Project Showcase
-            </h3>
+            <h3 className="text-xl font-semibold mb-4">Project Showcase</h3>
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="h-40 bg-gray-200 rounded-xl flex items-center justify-center">
@@ -148,8 +127,8 @@ export default function Home() {
             {/* Testimonial */}
             <div className="mt-6 p-6 bg-gray-100 rounded-xl">
               <p className="italic text-gray-700">
-                "StackNova didn’t just build an app; they transformed our data
-                strategy and improved delivery efficiency."
+                &quot;StackNova didn’t just build an app; they transformed our
+                data strategy and improved delivery efficiency.&quot;
               </p>
               <p className="mt-2 font-semibold">— Marcus Chen</p>
             </div>
@@ -169,9 +148,7 @@ export default function Home() {
           </div>
 
           <div className="p-6 bg-blue-600 text-white rounded-xl">
-            <h4 className="font-semibold text-lg">
-              Have a similar project?
-            </h4>
+            <h4 className="font-semibold text-lg">Have a similar project?</h4>
             <p className="text-sm mt-2">
               Let’s discuss how AI can help your business grow.
             </p>

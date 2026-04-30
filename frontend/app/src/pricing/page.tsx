@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const plans = [
   {
@@ -48,7 +49,7 @@ export default function PricingPage() {
     <div className="min-h-screen bg-white text-gray-800 px-6 py-10">
       {/* Navbar */}
       <div className="flex justify-between items-center mb-12">
-        <h1 className="text-2xl font-bold text-blue-600">StackNova</h1>
+        <Image src="/logo.png" alt="logo" height={105} width={105} />
         <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">
           Let’s Talk
         </button>
@@ -104,9 +105,7 @@ export default function PricingPage() {
 
       {/* Plan Table */}
       <div className="mb-20">
-        <h3 className="text-2xl font-bold mb-6 text-center">
-          Plan Deep-Dive
-        </h3>
+        <h3 className="text-2xl font-bold mb-6 text-center">Plan Deep-Dive</h3>
 
         <div className="overflow-x-auto">
           <table className="w-full border border-gray-200 rounded-lg">

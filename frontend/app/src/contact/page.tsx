@@ -1,30 +1,58 @@
 "use client";
 
 import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type message = {
+  name: string;
+  email: string;
+  company: string;
+  message: string;
+};
 
 export default function ContactPage() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<message>({
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      message: "",
+    },
+  });
+
+  const onSubmit: SubmitHandler<message> = async (data) => {
+    console.log(data);
+    try {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
+      const res = await fetch(`${apiBase}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => null);
+        console.error("Contact API error:", err);
+        alert(
+          "There was an error sending your message. Please try again later.",
+        );
+      } else {
+        alert("Thanks — your message was sent.");
+        reset();
+      }
+    } catch (error) {
+      console.error(error);
+      alert("There was an error sending your message. Please try again later.");
+    }
+  };
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Navbar */}
-      <header className="w-full border-b border-gray-200">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          <h1 className="text-xl font-bold">StackNova</h1>
-          <nav className="hidden md:flex gap-6 text-sm text-gray-600">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Projects</a>
-            <a href="#">Pricing</a>
-            <a href="#">Team</a>
-            <a href="#" className="text-blue-600 font-medium">
-              Contact
-            </a>
-          </nav>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
-            Let’s Talk
-          </button>
-        </div>
-      </header>
 
       {/* Hero */}
       <section className="text-center py-16 px-6">
@@ -46,34 +74,66 @@ export default function ContactPage() {
         <div className="bg-gray-50 p-6 rounded-2xl shadow-sm">
           <h3 className="text-xl font-semibold mb-4">Send a Message</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {/* Form logic added below - UI structure unchanged */}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="border p-3 rounded-lg w-full"
+                {...register("name", { required: "Full name is required" })}
+              />
+              {errors.name && (
+                <p className="text-sm text-red-600 col-span-full">
+                  {errors.name.message}
+                </p>
+              )}
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="border p-3 rounded-lg w-full"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Please provide a valid email address",
+                  },
+                })}
+              />
+              {errors.email && (
+                <p className="text-sm text-red-600 col-span-full">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+
             <input
               type="text"
-              placeholder="Full Name"
-              className="border p-3 rounded-lg w-full"
+              placeholder="Company (Optional)"
+              className="border p-3 rounded-lg w-full mb-4"
+              {...register("company")}
             />
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="border p-3 rounded-lg w-full"
+
+            <textarea
+              placeholder="Your message..."
+              rows={5}
+              className="border p-3 rounded-lg w-full mb-4"
+              {...register("message", { required: "Message is required" })}
             />
-          </div>
+            {errors.message && (
+              <p className="text-sm text-red-600 mb-4">
+                {errors.message.message}
+              </p>
+            )}
 
-          <input
-            type="text"
-            placeholder="Company (Optional)"
-            className="border p-3 rounded-lg w-full mb-4"
-          />
-
-          <textarea
-            placeholder="Your message..."
-            rows={5}
-            className="border p-3 rounded-lg w-full mb-4"
-          />
-
-          <button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg">
-            Send Secure Message
-          </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-linear-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg disabled:opacity-60"
+            >
+              {isSubmitting ? "Sending..." : "Send Secure Message"}
+            </button>
+          </form>
         </div>
 
         {/* Info */}
@@ -101,7 +161,7 @@ export default function ContactPage() {
 
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="bg-gradient-to-r from-blue-100 to-purple-100 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-linear-to-r from-blue-100 to-purple-100 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <p className="text-sm text-blue-600 mb-2">
               FAST TRACK YOUR PROJECT

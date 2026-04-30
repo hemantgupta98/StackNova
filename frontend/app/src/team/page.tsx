@@ -38,27 +38,6 @@ const team = [
 export default function TeamPage() {
   return (
     <main className="bg-white text-gray-900 min-h-screen">
-      {/* Navbar */}
-      <header className="flex justify-between items-center px-6 py-4 shadow-sm">
-        <h1 className="text-xl font-bold text-blue-600">StackNova</h1>
-
-        <nav className="hidden md:flex gap-6 text-gray-700">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Projects</a>
-          <a href="#">Pricing</a>
-          <a href="#" className="font-semibold text-blue-600">
-            Team
-          </a>
-          <a href="#">Contact</a>
-        </nav>
-
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">
-          Let’s Talk
-        </button>
-      </header>
-
       {/* Hero */}
       <section className="text-center py-16 px-6">
         <p className="text-blue-500 text-sm font-medium">Our Culture</p>
@@ -81,15 +60,11 @@ export default function TeamPage() {
           </div>
 
           <div>
-            <p className="text-sm text-blue-500 font-medium">
-              Founder & CEO
-            </p>
-            <h3 className="text-2xl font-bold mt-1">
-              Dr. Julian Vance
-            </h3>
+            <p className="text-sm text-blue-500 font-medium">Founder & CEO</p>
+            <h3 className="text-2xl font-bold mt-1">Dr. Julian Vance</h3>
             <p className="text-gray-600 mt-2 italic">
-              “The future isn’t automation—it’s augmentation. We empower
-              humans through intelligent systems.”
+              “The future isn’t automation—it’s augmentation. We empower humans
+              through intelligent systems.”
             </p>
           </div>
         </div>
@@ -97,9 +72,7 @@ export default function TeamPage() {
 
       {/* Team Grid */}
       <section className="px-6 md:px-16 py-16">
-        <h3 className="text-2xl font-semibold mb-10">
-          The Core Team
-        </h3>
+        <h3 className="text-2xl font-semibold mb-10">The Core Team</h3>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {team.map((member, i) => (
@@ -113,9 +86,7 @@ export default function TeamPage() {
 
               <h4 className="mt-4 font-semibold">{member.name}</h4>
               <p className="text-blue-600 text-sm">{member.role}</p>
-              <p className="text-gray-600 text-sm mt-2">
-                {member.desc}
-              </p>
+              <p className="text-gray-600 text-sm mt-2">{member.desc}</p>
             </div>
           ))}
         </div>
@@ -148,16 +119,12 @@ export default function TeamPage() {
       <footer className="bg-gray-50 px-6 py-10">
         <div className="grid md:grid-cols-4 gap-8 text-sm text-gray-600">
           <div>
-            <h4 className="font-bold text-gray-900 mb-2">
-              StackNova
-            </h4>
+            <h4 className="font-bold text-gray-900 mb-2">StackNova</h4>
             <p>Building high-performance AI & web products.</p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">
-              Company
-            </h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Company</h4>
             <ul className="space-y-1">
               <li>About Us</li>
               <li>Our Team</li>
@@ -166,9 +133,7 @@ export default function TeamPage() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">
-              Support
-            </h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Support</h4>
             <ul className="space-y-1">
               <li>Contact</li>
               <li>Pricing</li>
@@ -177,9 +142,7 @@ export default function TeamPage() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">
-              Social
-            </h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Social</h4>
             <p>Twitter · LinkedIn · GitHub</p>
           </div>
         </div>
