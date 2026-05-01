@@ -2,6 +2,7 @@
 
 import Query from "@/components/forms/query";
 import { CircleCheck } from "lucide-react";
+import PricingFeatures from "@/components/ui/feature";
 
 const btnGradient =
   "w-full relative cursor-pointer overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 sm:px-4 py-2 sm:py-3 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:from-blue-600 hover:to-indigo-700 active:scale-95 text-sm sm:text-base before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-white/20 before:skew-x-[-20deg] hover:before:left-[100%] before:transition-all before:duration-700";
@@ -41,6 +42,9 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-6 sm:gap-8">
             {/* ================= Starter Card ================= */}
             <div className="bg-gray-50 rounded-xl shadow-2xl hover:scale-105 transition-all duration-200">
+              <p className="text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600 mb-2">
+                Starter
+              </p>
               <h1 className="text-center text-lg sm:text-xl font-semibold mt-5">
                 Basic Projects
               </h1>
@@ -49,7 +53,7 @@ export default function PricingPage() {
               </p>
 
               <h1 className="text-2xl sm:text-4xl font-bold mt-8">
-                ₹20,000 – ₹40,000
+                ₹10,000 – ₹20,000
                 <span className="text-xs sm:text-sm text-gray-600">
                   {" "}
                   /project
@@ -93,12 +97,10 @@ export default function PricingPage() {
             </div>
 
             {/* ================= Popular Card ================= */}
-            <div className="relative bg-gray-50 rounded-xl shadow-2xl border-2 border-blue-500 hover:scale-105 hover:shadow-blue-200 transition-all duration-200">
-              {/* Badge */}
-              <span className="bg-blue-500 text-white text-xs px-3 py-1 rounded-full absolute top-3 right-3">
-                Most Popular
-              </span>
-
+            <div className="relative bg-gray-50 rounded-xl shadow-2xl border-2 border-gray-300 hover:scale-105 hover:shadow-blue-200 transition-all duration-200">
+              <p className="text-center text-xs sm:text-sm font-bold uppercase tracking-widest bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+                Pro
+              </p>
               <h1 className="text-center text-lg sm:text-2xl font-semibold mt-5">
                 Business Solutions
               </h1>
@@ -107,7 +109,7 @@ export default function PricingPage() {
               </p>
 
               <h1 className="text-2xl sm:text-4xl font-bold mt-8">
-                ₹40,000 – ₹1,50,000
+                ₹25,000 – ₹50,000
                 <span className="text-xs sm:text-sm text-gray-600">
                   {" "}
                   /project
@@ -163,6 +165,9 @@ export default function PricingPage() {
 
             {/* ================= Enterprise Card ================= */}
             <div className="bg-gray-50 rounded-xl shadow-2xl hover:scale-105 transition-all duration-200">
+              <p className="text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-indigo-600 mb-2">
+                Enterprise
+              </p>
               <h1 className="text-center text-lg sm:text-xl font-semibold mt-5">
                 Custom Solutions
               </h1>
@@ -219,40 +224,12 @@ export default function PricingPage() {
           </div>
         </section>
 
+        {/**feature */}
         <div className="mb-20">
           <h3 className="text-2xl font-bold mb-6 text-center">
             Plan Deep-Dive
           </h3>
-
-          <div className="overflow-x-auto">
-            <table className="w-full border border-gray-200 rounded-lg">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="p-3 text-left">Feature</th>
-                  <th className="p-3">Starter</th>
-                  <th className="p-3">Pro</th>
-                  <th className="p-3">Enterprise</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ["AI Models Access", "Basic", "Advanced", "SOTA"],
-                  ["API Rate Limit", "10 req/s", "50 req/s", "Unlimited"],
-                  ["Storage", "5GB", "50GB", "Unlimited"],
-                  ["Security Logs", "7 Days", "30 Days", "365 Days"],
-                  ["Custom Model Training", "No", "Optional", "Included"],
-                ].map((row, i) => (
-                  <tr key={i} className="border-t">
-                    {row.map((cell, j) => (
-                      <td key={j} className="p-3 text-center">
-                        {cell}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PricingFeatures />
         </div>
 
         {/* FAQ */}
