@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import FloatingActions from "@/components/ui/floatmessage";
+import Footer from "@/components/ui/footer";
 import favicon from "./favicon.png";
 
 const geistSans = Geist({
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Header />
         {children}
         <FloatingActions />
+        <Footer />
       </body>
     </html>
   );
