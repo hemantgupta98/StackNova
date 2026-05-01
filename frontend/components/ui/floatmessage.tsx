@@ -5,7 +5,7 @@ import { FaWhatsapp, FaLinkedinIn } from "react-icons/fa";
 
 export default function FloatingActions() {
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+    <div className="fixed bottom-18 right-6 flex flex-col gap-4 z-50">
       {/* WhatsApp Button */}
       <a
         href="https://wa.me/919867742834?text=Hello%20StackNova%2C%20I%20want%20to%20discuss%20a%20project"

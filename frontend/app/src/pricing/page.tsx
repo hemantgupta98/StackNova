@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import Query from "@/components/forms/query";
 import { CircleCheck } from "lucide-react";
 
 const btnGradient =
@@ -257,33 +256,8 @@ export default function PricingPage() {
         </div>
 
         {/* FAQ */}
-        <div className="max-w-2xl mx-auto mb-20">
-          <h3 className="text-2xl font-bold mb-6 text-center">
-            Frequently Asked Questions
-          </h3>
 
-          {[
-            "How does the AI compute credits system work?",
-            "Can I upgrade or downgrade anytime?",
-            "Do you offer pricing for non-profits?",
-            "What security measures are in place?",
-          ].map((q, i) => (
-            <details
-              key={i}
-              className="border rounded-lg mb-3 p-4 cursor-pointer"
-            >
-              <summary className="font-medium">{q}</summary>
-              <p className="text-gray-600 mt-2">
-                This is a sample answer. Replace with actual content.
-              </p>
-            </details>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <footer className="border-t pt-8 text-center text-gray-500 text-sm">
-          © 2026 StackNova. All rights reserved.
-        </footer>
+        <Query />
       </div>
     </>
   );

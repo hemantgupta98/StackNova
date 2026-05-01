@@ -40,11 +40,12 @@ export default function Header() {
           <NavigationMenuList className="gap-2">
             {navigationLinks.map((link) => (
               <NavigationMenuItem key={link.href}>
-                <Link href={link.href} legacyBehavior passHref>
-                  <NavigationMenuLink className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 transition-colors">
-                    {link.name}
-                  </NavigationMenuLink>
-                </Link>
+                <NavigationMenuLink
+                  asChild
+                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 transition-colors"
+                >
+                  <Link href={link.href}>{link.name}</Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
