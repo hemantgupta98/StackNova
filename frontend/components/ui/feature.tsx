@@ -83,15 +83,15 @@ export default function PricingTable() {
   ];
 
   return (
-    <section className="py-16 px-4 max-w-7xl mx-auto">
+    <section className="mx-auto max-w-7xl px-4 py-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
         ⚡ Plan Deep-Dive
       </h2>
 
-      <div className="overflow-x-auto border rounded-2xl shadow-sm">
+      <div className="overflow-x-auto rounded-2xl border border-border shadow-sm">
         <table className="w-full text-sm text-left border-collapse">
           {/* Header */}
-          <thead className="bg-gray-100 text-gray-700">
+          <thead className="bg-muted text-muted-foreground">
             <tr>
               <th className="p-4 font-semibold">Feature</th>
               <th className="p-4 text-center font-semibold">Starter</th>
@@ -105,18 +105,23 @@ export default function PricingTable() {
           {/* Body */}
           <tbody>
             {features.map((item, i) => (
-              <tr key={i} className="border-t hover:bg-gray-50 transition">
-                <td className="p-4 font-medium text-gray-800">{item.title}</td>
+              <tr
+                key={i}
+                className="border-t border-border transition hover:bg-muted/50"
+              >
+                <td className="p-4 font-medium text-foreground">
+                  {item.title}
+                </td>
 
-                <td className="p-4 text-center text-gray-600">
+                <td className="p-4 text-center text-muted-foreground">
                   {item.starter}
                 </td>
 
-                <td className="p-4 text-center font-semibold text-gray-900">
+                <td className="p-4 text-center font-semibold text-foreground">
                   {item.pro}
                 </td>
 
-                <td className="p-4 text-center text-gray-600">
+                <td className="p-4 text-center text-muted-foreground">
                   {item.enterprise}
                 </td>
               </tr>

@@ -61,7 +61,7 @@ export default function PricingInquiryForm() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-xl rounded-2xl p-6 space-y-5"
+        className="bg-card border border-border shadow-xl rounded-2xl p-6 space-y-5"
       >
         {/* Name */}
         <div>
@@ -111,7 +111,7 @@ export default function PricingInquiryForm() {
             {...register("projectType", {
               required: "Project type is required",
             })}
-            className="w-full min-h-12 border p-3 rounded-lg"
+            className="w-full min-h-12 border border-input bg-transparent p-3 rounded-lg text-foreground"
           >
             <option value="">Select Project Type</option>
             <option value="ecommerce">E-commerce Website</option>
@@ -136,7 +136,7 @@ export default function PricingInquiryForm() {
             {...register("budget", {
               required: "Budget range is required",
             })}
-            className="w-full min-h-12 border p-3 rounded-lg"
+            className="w-full min-h-12 border border-input bg-transparent p-3 rounded-lg text-foreground"
           >
             <option value="">Select Budget Range</option>
             <option>₹15,000 - ₹20,000</option>
@@ -163,7 +163,7 @@ export default function PricingInquiryForm() {
             {...register("timeline", {
               required: "Timeline is required",
             })}
-            className="w-full min-h-12 border p-3 rounded-lg"
+            className="w-full min-h-12 border border-input bg-transparent p-3 rounded-lg text-foreground"
           >
             <option value="">Project Timeline</option>
             <option>1-2 Weeks</option>
@@ -184,7 +184,7 @@ export default function PricingInquiryForm() {
             {...register("message", {
               required: "Project details are required",
             })}
-            className="w-full border p-3 rounded-lg min-h-32"
+            className="w-full min-h-32 rounded-lg border border-input bg-transparent p-3 text-base text-foreground placeholder:text-muted-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
           />
           {errors.message && (
             <p className="text-red-500 text-sm">{errors.message.message}</p>
@@ -215,20 +215,20 @@ export default function PricingInquiryForm() {
         <div
           role="status"
           aria-live="polite"
-          className="mt-6 bg-green-50 border border-green-100 p-4 rounded-lg"
+          className="mt-6 rounded-lg border border-border bg-card p-4"
         >
           <p className="font-semibold">Thanks, {confirmingData.name}!</p>
           {showTyping ? (
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-muted-foreground">
               Our team is reviewing your inquiry
               <span className="animate-pulse">...</span>
             </p>
           ) : (
             <>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-muted-foreground">
                 We received your message and will contact you shortly.
               </p>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 We typically respond within 24 hours.
               </p>
               <div className="mt-3">

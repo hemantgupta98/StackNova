@@ -54,7 +54,7 @@ export default function ContactPage() {
     }
   };
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Navbar */}
 
       {/* Hero */}
@@ -65,7 +65,7 @@ export default function ContactPage() {
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Let’s Build the Future Together
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           Have a project in mind? We specialize in AI-driven solutions and
           high-performance engineering.
         </p>
@@ -74,7 +74,7 @@ export default function ContactPage() {
       {/* Main Grid */}
       <section className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 pb-16">
         {/* Form */}
-        <div className="bg-gray-50 p-6 rounded-2xl shadow-sm">
+        <div className="bg-card border border-border p-6 rounded-2xl shadow-sm">
           <h3 className="text-xl font-semibold mb-4">Send a Message</h3>
 
           {/* Form logic added below - UI structure unchanged */}
@@ -83,7 +83,7 @@ export default function ContactPage() {
               <Input
                 type="text"
                 placeholder="Full Name"
-                className="border p-3 rounded-lg w-full"
+                className="w-full"
                 {...register("name", { required: "Full name is required" })}
               />
               {errors.name && (
@@ -94,7 +94,7 @@ export default function ContactPage() {
               <Input
                 type="email"
                 placeholder="Email Address"
-                className="border p-3 rounded-lg w-full"
+                className="w-full"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -113,14 +113,14 @@ export default function ContactPage() {
             <Input
               type="text"
               placeholder="Company (Optional)"
-              className="border p-3 rounded-lg w-full mb-4"
+              className="w-full mb-4"
               {...register("company")}
             />
 
             <textarea
               placeholder="Your message..."
               rows={5}
-              className="border p-3 rounded-lg w-full mb-4"
+              className="w-full mb-4 rounded-lg border border-input bg-transparent p-3 text-base text-foreground placeholder:text-muted-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
               {...register("message", { required: "Message is required" })}
             />
             {errors.message && (
@@ -141,22 +141,22 @@ export default function ContactPage() {
 
         {/* Info */}
         <div className="space-y-4">
-          <div className="bg-gray-50 p-5 rounded-xl shadow-sm">
-            <p className="text-sm text-gray-500">Email</p>
+          <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
+            <p className="text-sm text-muted-foreground">Email</p>
             <p className="font-medium">hello@stacknova.ai</p>
           </div>
 
-          <div className="bg-gray-50 p-5 rounded-xl shadow-sm">
-            <p className="text-sm text-gray-500">Phone</p>
+          <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
+            <p className="text-sm text-muted-foreground">Phone</p>
             <p className="font-medium">+1 (555) 012-3456</p>
           </div>
 
-          <div className="bg-gray-50 p-5 rounded-xl shadow-sm">
-            <p className="text-sm text-gray-500">Address</p>
+          <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
+            <p className="text-sm text-muted-foreground">Address</p>
             <p className="font-medium">San Francisco, USA</p>
           </div>
 
-          <div className="bg-gray-100 h-40 rounded-xl flex items-center justify-center text-gray-500">
+          <div className="bg-muted h-40 rounded-xl flex items-center justify-center text-muted-foreground">
             Map Preview
           </div>
         </div>
@@ -172,7 +172,7 @@ export default function ContactPage() {
             <h3 className="text-2xl font-bold mb-2">
               Book a 15-min Discovery Call
             </h3>
-            <p className="text-gray-600 text-sm">
+            <p className="text-muted-foreground text-sm">
               Speak directly with our expert to discuss your requirements.
             </p>
           </div>
@@ -181,49 +181,6 @@ export default function ContactPage() {
           </button>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-200 py-10 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-6 text-sm">
-          <div>
-            <h4 className="font-bold mb-2">StackNova</h4>
-            <p className="text-gray-600">
-              Building high-performance web and AI products.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-2">Company</h4>
-            <ul className="space-y-1 text-gray-600">
-              <li>About</li>
-              <li>Team</li>
-              <li>Portfolio</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-2">Support</h4>
-            <ul className="space-y-1 text-gray-600">
-              <li>Contact</li>
-              <li>Pricing</li>
-              <li>Privacy Policy</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-2">Social</h4>
-            <div className="flex gap-3 text-gray-600">
-              <span>🐦</span>
-              <span>💼</span>
-              <span>💻</span>
-            </div>
-          </div>
-        </div>
-
-        <p className="text-center text-gray-500 text-xs mt-8">
-          © 2026 StackNova. All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 }

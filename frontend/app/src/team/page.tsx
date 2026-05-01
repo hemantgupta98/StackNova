@@ -37,7 +37,7 @@ const team = [
 
 export default function TeamPage() {
   return (
-    <main className="bg-white text-gray-900 min-h-screen">
+    <main className="bg-background text-foreground min-h-screen">
       {/* Hero */}
       <section className="text-center py-16 px-6">
         <p className="text-blue-500 text-sm font-medium">Our Culture</p>
@@ -46,7 +46,7 @@ export default function TeamPage() {
           Meet the <span className="text-blue-600">Innovators</span>
         </h2>
 
-        <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+        <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
           We blend AI innovation with human-centered design to build scalable
           digital ecosystems.
         </p>
@@ -54,15 +54,15 @@ export default function TeamPage() {
 
       {/* Founder Highlight */}
       <section className="max-w-5xl mx-auto px-6">
-        <div className="border rounded-2xl p-6 md:p-10 flex flex-col md:flex-row gap-6 items-center">
-          <div className="w-28 h-28 rounded-full bg-gray-200 flex items-center justify-center">
-            <span className="text-sm text-gray-500">Photo</span>
+        <div className="border border-border rounded-2xl p-6 md:p-10 flex flex-col md:flex-row gap-6 items-center">
+          <div className="w-28 h-28 rounded-full bg-muted flex items-center justify-center">
+            <span className="text-sm text-muted-foreground">Photo</span>
           </div>
 
           <div>
             <p className="text-sm text-blue-500 font-medium">Founder & CEO</p>
             <h3 className="text-2xl font-bold mt-1">Dr. Julian Vance</h3>
-            <p className="text-gray-600 mt-2 italic">
+            <p className="text-muted-foreground mt-2 italic">
               “The future isn’t automation—it’s augmentation. We empower humans
               through intelligent systems.”
             </p>
@@ -78,15 +78,17 @@ export default function TeamPage() {
           {team.map((member, i) => (
             <div
               key={i}
-              className="border rounded-2xl p-6 text-center hover:shadow-md transition"
+              className="border border-border rounded-2xl p-6 text-center hover:shadow-md transition"
             >
-              <div className="w-20 h-20 mx-auto rounded-full bg-gray-200 flex items-center justify-center">
-                <span className="text-xs text-gray-500">Img</span>
+              <div className="w-20 h-20 mx-auto rounded-full bg-muted flex items-center justify-center">
+                <span className="text-xs text-muted-foreground">Img</span>
               </div>
 
               <h4 className="mt-4 font-semibold">{member.name}</h4>
               <p className="text-blue-600 text-sm">{member.role}</p>
-              <p className="text-gray-600 text-sm mt-2">{member.desc}</p>
+              <p className="text-muted-foreground text-sm mt-2">
+                {member.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -94,13 +96,13 @@ export default function TeamPage() {
 
       {/* CTA Section */}
       <section className="px-6 md:px-16 pb-16">
-        <div className="bg-gray-100 rounded-2xl p-10 text-center">
+        <div className="bg-muted rounded-2xl p-10 text-center">
           <h3 className="text-2xl md:text-3xl font-bold">
             We’re Building the Future. <br />
             Want to join us?
           </h3>
 
-          <p className="text-gray-600 mt-4">
+          <p className="text-muted-foreground mt-4">
             We’re looking for brilliant minds in AI, design, and engineering.
           </p>
 
@@ -108,7 +110,7 @@ export default function TeamPage() {
             <button className="bg-blue-600 text-white px-6 py-2 rounded-lg">
               Join the Team
             </button>
-            <button className="border px-6 py-2 rounded-lg">
+            <button className="border border-border px-6 py-2 rounded-lg">
               Browse Openings
             </button>
           </div>
@@ -116,15 +118,15 @@ export default function TeamPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-50 px-6 py-10">
-        <div className="grid md:grid-cols-4 gap-8 text-sm text-gray-600">
+      <footer className="bg-muted/40 px-6 py-10">
+        <div className="grid md:grid-cols-4 gap-8 text-sm text-muted-foreground">
           <div>
-            <h4 className="font-bold text-gray-900 mb-2">StackNova</h4>
+            <h4 className="font-bold text-foreground mb-2">StackNova</h4>
             <p>Building high-performance AI & web products.</p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Company</h4>
+            <h4 className="font-semibold text-foreground mb-2">Company</h4>
             <ul className="space-y-1">
               <li>About Us</li>
               <li>Our Team</li>
@@ -133,7 +135,7 @@ export default function TeamPage() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Support</h4>
+            <h4 className="font-semibold text-foreground mb-2">Support</h4>
             <ul className="space-y-1">
               <li>Contact</li>
               <li>Pricing</li>
@@ -142,12 +144,12 @@ export default function TeamPage() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Social</h4>
+            <h4 className="font-semibold text-foreground mb-2">Social</h4>
             <p>Twitter · LinkedIn · GitHub</p>
           </div>
         </div>
 
-        <p className="text-center text-gray-500 mt-6 text-xs">
+        <p className="text-center text-muted-foreground mt-6 text-xs">
           © 2026 StackNova. All rights reserved.
         </p>
       </footer>

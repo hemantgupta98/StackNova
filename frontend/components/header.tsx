@@ -9,6 +9,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
+import { ModeToggle } from "@/components/theme-toogle";
 
 export default function Header() {
   const navigationLinks = [
@@ -22,10 +23,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full border-b border-gray-200 bg-white sticky top-0 z-50">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0">
+        <Link href="/" className="shrink-0">
           <Image
             src="/logo.png"
             alt="StackNova Logo"
@@ -42,17 +43,20 @@ export default function Header() {
               <NavigationMenuItem key={link.href}>
                 <NavigationMenuLink
                   asChild
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 transition-colors"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-foreground/90 transition-colors hover:bg-accent hover:text-accent-foreground"
                 >
                   <Link href={link.href}>{link.name}</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
+            <NavigationMenuItem>
+              <ModeToggle />
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
         {/* CTA Button */}
-        <button className="border border-blue-500 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition flex-shrink-0">
+        <button className="shrink-0 rounded-lg border border-primary/40 px-4 py-2 text-primary transition hover:bg-primary/10">
           Get Consultation
         </button>
       </div>

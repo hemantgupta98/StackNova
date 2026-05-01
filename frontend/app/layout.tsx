@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import FloatingActions from "@/components/ui/floatmessage";
 import Footer from "@/components/ui/footer";
+import { ThemeProvider } from "@/components/ui/theme";
 import favicon from "./favicon.png";
 
 const geistSans = Geist({
@@ -31,15 +32,23 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <link rel="icon" href={favicon.src} sizes="any" />
       </head>
-      <body className="min-h-full flex flex-col">
-        <Header />
-        {children}
-        <FloatingActions />
-        <Footer />
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+          <FloatingActions />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
