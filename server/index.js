@@ -1,10 +1,12 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import nodemailer from "nodemailer";
+
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -49,7 +51,7 @@ async function sendWithNodemailer(adminEmail, body) {
   await transporter.sendMail(userMail);
 }
 
-app.post("/api/contact", async (req, res) => {
+app.post("/mail", async (req, res) => {
   try {
     const adminEmail = process.env.ADMIN_EMAIL;
     if (!adminEmail) {

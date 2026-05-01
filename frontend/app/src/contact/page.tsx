@@ -1,5 +1,6 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -28,8 +29,10 @@ export default function ContactPage() {
   const onSubmit: SubmitHandler<message> = async (data) => {
     console.log(data);
     try {
-      const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
-      const res = await fetch(`${apiBase}/api/contact`, {
+      const apiBase = (
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
+      ).replace(/\/$/, "");
+      const res = await fetch(`${apiBase}/mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -37,10 +40,10 @@ export default function ContactPage() {
 
       if (!res.ok) {
         const err = await res.json().catch(() => null);
-        console.error("Contact API error:", err);
-        alert(
-          "There was an error sending your message. Please try again later.",
-        );
+        const msg =
+          err?.error ||
+          "There was an error sending your message. Please try again later.";
+        alert(msg);
       } else {
         alert("Thanks — your message was sent.");
         reset();
@@ -77,7 +80,7 @@ export default function ContactPage() {
           {/* Form logic added below - UI structure unchanged */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <input
+              <Input
                 type="text"
                 placeholder="Full Name"
                 className="border p-3 rounded-lg w-full"
@@ -88,7 +91,7 @@ export default function ContactPage() {
                   {errors.name.message}
                 </p>
               )}
-              <input
+              <Input
                 type="email"
                 placeholder="Email Address"
                 className="border p-3 rounded-lg w-full"
@@ -107,7 +110,7 @@ export default function ContactPage() {
               )}
             </div>
 
-            <input
+            <Input
               type="text"
               placeholder="Company (Optional)"
               className="border p-3 rounded-lg w-full mb-4"
