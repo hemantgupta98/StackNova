@@ -94,8 +94,19 @@ async function sendWithNodemailer(adminEmail, body) {
           Thank you for reaching out to us. We’ve successfully received your message and our team will review it shortly.
         </p>
 
-        <div style="background:#f9fafb; padding:15px; border-radius:8px; margin:20px 0;">
-          <p style="margin:0; font-weight:bold;">⏳ What happens next?</p>
+        <div style="background:#f9fafb; padding:15px; border-radius:8px; margin:20px 0;">          <p style="margin:0; font-weight:bold;">📋 Your Submission Details:</p>
+          <div style="margin-top:10px; font-size:14px;">
+            <p style="margin:5px 0;"><strong>Name:</strong> ${name}</p>
+            <p style="margin:5px 0;"><strong>Email:</strong> ${body.email || "N/A"}</p>
+            <p style="margin:5px 0;"><strong>Company:</strong> ${body.company || "N/A"}</p>
+            <p style="margin:5px 0;"><strong>Message:</strong></p>
+            <div style="background:#fff; padding:10px; border-left:3px solid #6366f1; margin-top:5px;">
+              ${body.message || "No message provided"}
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#f9fafb; padding:15px; border-radius:8px; margin:20px 0;">          <p style="margin:0; font-weight:bold;">⏳ What happens next?</p>
           <ul style="margin:10px 0 0; padding-left:18px;">
             <li>Our team will review your request</li>
             <li>We’ll get back to you within 24 hours</li>
