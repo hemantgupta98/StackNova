@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { toast, Toaster } from "sonner";
 
 const team = [
@@ -50,6 +50,38 @@ const team = [
   },
 ];
 
+const card3DVariant: Variants = {
+  hidden: { opacity: 0, y: 60, rotateX: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 80,
+      damping: 12,
+    },
+  },
+};
+
+const imageHover3D: Variants = {
+  hover: {
+    scale: 1.1,
+    rotateY: 8,
+    rotateX: 5,
+    transition: { type: "spring" as const, stiffness: 120 },
+  },
+};
+
+const textFade = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.2, duration: 0.6 },
+  },
+};
+
 const cardVariant = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
@@ -86,7 +118,13 @@ export default function TeamPage() {
       {/* Hero */}
       <Toaster position="top-center" richColors />
 
-      <section className="text-center py-20 px-6">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={textFade}
+        className="text-center py-20 px-6"
+      >
         <p className="text-blue-500 text-sm font-semibold tracking-widest uppercase">
           Our Culture
         </p>
@@ -120,33 +158,38 @@ export default function TeamPage() {
           we transform ideas into scalable, impactful solutions that shape the
           future.
         </motion.p>
-      </section>
+      </motion.section>
 
       <div className="space-y-6">
         {/* Founder */}
         <section className="max-w-5xl mx-auto px-6">
           <motion.div
-            variants={cardVariant}
+            variants={card3DVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
             whileHover={{
-              y: -8,
-              scale: 1.02,
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
             }}
+            style={{ transformStyle: "preserve-3d" }}
             className="group border border-border rounded-2xl p-6 md:p-10 flex flex-col md:flex-row gap-6 items-center bg-background/60 backdrop-blur-md shadow-md hover:shadow-xl transition-all duration-300"
           >
             {/* Image */}
             <div className="w-28 aspect-square rounded-full bg-linear-to-br from-blue-500 to-purple-500 p-0.5 shrink-0">
-              <div className="relative w-full h-full overflow-hidden rounded-full bg-muted">
+              <motion.div
+                className="relative w-full h-full overflow-hidden rounded-full bg-muted"
+                variants={imageHover3D}
+                whileHover="hover"
+              >
                 <Image
                   src="/pic3.png"
                   alt="logo"
                   fill
                   className="object-cover object-center transition group-hover:scale-110"
                 />
-              </div>
+              </motion.div>
             </div>
 
             {/* Content */}
@@ -174,22 +217,33 @@ export default function TeamPage() {
                 {showFounderDetails ? "Hide Founder Details" : "Know More"}
               </button>
 
-              {showFounderDetails && (
-                <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-4 text-left backdrop-blur-sm md:max-w-xl">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {founderDetails.summary}
-                  </p>
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={
+                  showFounderDetails
+                    ? { opacity: 1, height: "auto" }
+                    : { opacity: 0, height: 0 }
+                }
+                transition={{ duration: 0.4 }}
+                className="overflow-hidden"
+              >
+                {showFounderDetails && (
+                  <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-4 text-left backdrop-blur-sm md:max-w-xl">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {founderDetails.summary}
+                    </p>
 
-                  <ul className="mt-4 space-y-2 text-sm text-foreground">
-                    {founderDetails.highlights.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="mt-1 h-2 w-2 rounded-full bg-blue-500 shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                    <ul className="mt-4 space-y-2 text-sm text-foreground">
+                      {founderDetails.highlights.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-blue-500 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </motion.div>
             </div>
           </motion.div>
         </section>
@@ -197,27 +251,32 @@ export default function TeamPage() {
         {/* Co-Founder */}
         <section className="max-w-5xl mx-auto px-6">
           <motion.div
-            variants={cardVariant}
+            variants={card3DVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            viewport={{ once: true, margin: "-100px" }}
             whileHover={{
-              y: -8,
-              scale: 1.02,
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
             }}
+            style={{ transformStyle: "preserve-3d" }}
             className="group border border-border rounded-2xl p-6 md:p-10 flex flex-col md:flex-row gap-6 items-center bg-background/60 backdrop-blur-md shadow-md hover:shadow-xl transition-all duration-300"
           >
             {/* Image */}
             <div className="w-28 aspect-square rounded-full bg-linear-to-br from-blue-500 to-purple-500 p-0.5 shrink-0">
-              <div className="relative w-full h-full overflow-hidden rounded-full bg-muted">
+              <motion.div
+                variants={imageHover3D}
+                whileHover="hover"
+                className="relative w-full h-full overflow-hidden rounded-full bg-muted"
+              >
                 <Image
                   src="/sourav.jpeg"
                   alt="logo"
                   fill
                   className="object-cover object-center transition group-hover:scale-110"
                 />
-              </div>
+              </motion.div>
             </div>
 
             {/* Content */}
@@ -244,22 +303,33 @@ export default function TeamPage() {
                 {showCoFounderDetails ? "Hide Co-Founder Details" : "Know More"}
               </button>
 
-              {showCoFounderDetails && (
-                <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-4 text-left backdrop-blur-sm md:max-w-xl">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {coFounderDetails.summary}
-                  </p>
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={
+                  showCoFounderDetails
+                    ? { opacity: 1, height: "auto" }
+                    : { opacity: 0, height: 0 }
+                }
+                transition={{ duration: 0.4 }}
+                className="overflow-hidden"
+              >
+                {showCoFounderDetails && (
+                  <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-4 text-left backdrop-blur-sm md:max-w-xl">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {coFounderDetails.summary}
+                    </p>
 
-                  <ul className="mt-4 space-y-2 text-sm text-foreground">
-                    {coFounderDetails.highlights.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="mt-1 h-2 w-2 rounded-full bg-blue-500 shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                    <ul className="mt-4 space-y-2 text-sm text-foreground">
+                      {coFounderDetails.highlights.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-blue-500 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </motion.div>
             </div>
           </motion.div>
         </section>
@@ -280,28 +350,39 @@ export default function TeamPage() {
           {team.map((member, i) => (
             <motion.div
               key={i}
-              variants={cardVariant}
+              variants={card3DVariant}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: i * 0.12 }}
               whileHover={{
-                y: -8,
-                scale: 1.02,
+                rotateY: i % 2 === 0 ? 8 : -8,
+                rotateX: 6,
+                scale: 1.05,
               }}
-              whileTap={{ scale: 0.98 }}
+              style={{
+                transformStyle: "preserve-3d",
+                perspective: 1000,
+              }}
               className="group border border-border rounded-2xl p-6 text-center hover:shadow-xl transition-all duration-300 bg-background/60 backdrop-blur-md"
             >
               {/* Avatar */}
               <div className="w-20 h-20 mx-auto rounded-full bg-linear-to-br from-blue-500 to-purple-500 p-0.5">
-                <div className="relative w-full h-full rounded-full bg-muted overflow-hidden">
+                <motion.div
+                  className="relative w-full h-full rounded-full bg-muted overflow-hidden"
+                  whileHover={{
+                    scale: 1.15,
+                    rotateY: 10,
+                  }}
+                  transition={{ type: "spring", stiffness: 150 }}
+                >
                   <Image
                     src={member.image}
                     alt={member.name}
                     fill
                     className="object-cover object-center transition group-hover:scale-110"
                   />
-                </div>
+                </motion.div>
               </div>
 
               {/* Name */}
@@ -338,7 +419,16 @@ export default function TeamPage() {
 
       {/* CTA Section */}
       <section className="px-6 md:px-16 pb-20">
-        <div className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-2xl">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          whileHover={{
+            scale: 1.02,
+          }}
+          className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-2xl"
+        >
           {/* Glow Effect */}
           <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl"></div>
 
@@ -374,7 +464,7 @@ export default function TeamPage() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );

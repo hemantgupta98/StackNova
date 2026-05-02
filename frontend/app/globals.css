@@ -145,3 +145,47 @@ h1, h2, h3, h4, h5, h6 {
     @apply font-sans;
   }
 }
+
+/* Smooth scroll and lightweight 3D text utility */
+html {
+  scroll-behavior: smooth;
+}
+
+.three-d-wrap {
+  display: inline-block;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.three-d-text {
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(90deg, #3b82f6, #7c3aed, #ec4899);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 30px 40px rgba(12,12,13,0.12), 0 8px 18px rgba(12,12,13,0.06);
+  transition: transform 280ms cubic-bezier(.2,.9,.2,1), text-shadow 280ms ease;
+}
+
+.three-d-wrap:hover .three-d-text {
+  transform: translateZ(40px) rotateX(3deg);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.three-d-text {
+  animation: gradientShift 6s linear infinite;
+}
+
+/* Slight motion-safe reduction */
+@media (prefers-reduced-motion: reduce) {
+  .three-d-text { animation: none; transition: none; }
+}
