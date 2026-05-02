@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import Query from "@/components/forms/query";
 import { CircleCheck } from "lucide-react";
 import PricingFeatures from "@/components/ui/feature";
-
+import { useRouter } from "next/navigation";
 const btnGradient =
   "w-full relative cursor-pointer overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 sm:px-4 py-2 sm:py-3 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:from-blue-600 hover:to-indigo-700 active:scale-95 text-sm sm:text-base before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-white/20 before:skew-x-[-20deg] hover:before:left-[100%] before:transition-all before:duration-700";
 
@@ -38,10 +38,30 @@ const card3D: Variants = {
     transition: { type: "spring", stiffness: 80 },
   },
 };
+const card3DVariant: Variants = {
+  hidden: { opacity: 0, y: 60, rotateX: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 80,
+      damping: 12,
+    },
+  },
+};
+
+const handleViewPricing = () => {
+  document.getElementById("pricing")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
 
 export default function PricingPage() {
   const ref = useRef(null);
-
+  const router = useRouter();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -87,6 +107,7 @@ export default function PricingPage() {
 
       {/* Pricing Section */}
       <motion.section
+        id="pricing"
         variants={containerStagger}
         initial="hidden"
         whileInView="visible"
@@ -272,6 +293,55 @@ export default function PricingPage() {
       >
         <Query />
       </motion.div>
+      <section className="px-6 md:px-16 pb-20">
+        <motion.div
+          variants={card3DVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          whileHover={{
+            rotateY: 6,
+            rotateX: 6,
+            scale: 1.03,
+          }}
+          style={{ transformStyle: "preserve-3d" }}
+          className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-2xl"
+        >
+          {/* Glow Effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl"></div>
+
+          <div className="relative z-10">
+            <h3 className="text-3xl md:text-4xl font-bold leading-tight">
+              Simple Pricing, Powerful Results <br />
+              <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-300 to-pink-300">
+                Choose the Plan That Fits Your Vision
+              </span>
+            </h3>
+
+            <p className="mt-5 text-white/80 max-w-2xl mx-auto text-lg">
+              We believe in transparent and flexible pricing that grows with
+              you. Whether you&apos;re just starting or scaling big, our plans
+              are designed to deliver maximum value with no hidden costs.
+            </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+              <button
+                onClick={handleViewPricing}
+                className="px-8 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+              >
+                View Pricing
+              </button>
+
+              <button
+                onClick={() => router.push("/src/contact")}
+                className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300"
+              >
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </section>
     </motion.div>
   );
 }

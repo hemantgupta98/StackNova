@@ -1,9 +1,27 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Projects from "@/components/ui/project";
 
+const card3DVariant: Variants = {
+  hidden: { opacity: 0, y: 60, rotateX: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 80,
+      damping: 12,
+    },
+  },
+};
+const handleViewProject = () => {
+  document.getElementById("project")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
 export default function Home() {
   return (
     <main className="bg-linear-to-b from-background to-muted/40 text-foreground min-h-screen">
@@ -140,8 +158,56 @@ export default function Home() {
       </section>
 
       {/* Projects Showcase (NEW 🔥) */}
-      <section className="px-6 md:px-16 py-12">
+      <section id="project">
         <Projects />
+      </section>
+      {/**cta */}
+      <section className="px-6 md:px-16 pb-20">
+        <motion.div
+          variants={card3DVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          whileHover={{
+            rotateY: 6,
+            rotateX: 6,
+            scale: 1.03,
+          }}
+          style={{ transformStyle: "preserve-3d" }}
+          className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-2xl"
+        >
+          {/* Glow Effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl"></div>
+
+          <div className="relative z-10">
+            <h3 className="text-3xl md:text-4xl font-bold leading-tight">
+              Turning Ideas Into Impactful Products <br />
+              <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-300 to-pink-300">
+                2 Projects Delivered Successfully
+              </span>
+            </h3>
+
+            <p className="mt-5 text-white/80 max-w-2xl mx-auto text-lg">
+              From innovative startups to scalable digital platforms, we’ve
+              helped bring ideas to life through design, development, and
+              strategy. Every project we build reflects our commitment to
+              quality, performance, and real-world impact.
+            </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+              <button
+                onClick={handleViewProject}
+                className="px-8 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+              >
+                View Projects
+              </button>
+
+              <button className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300">
+                See Case Studies
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </section>
     </main>
   );

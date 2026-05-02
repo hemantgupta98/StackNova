@@ -420,13 +420,16 @@ export default function TeamPage() {
       {/* CTA Section */}
       <section className="px-6 md:px-16 pb-20">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          variants={card3DVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
           whileHover={{
-            scale: 1.02,
+            rotateY: 6,
+            rotateX: 6,
+            scale: 1.03,
           }}
+          style={{ transformStyle: "preserve-3d" }}
           className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-2xl"
         >
           {/* Glow Effect */}

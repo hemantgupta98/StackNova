@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import { X } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+import { Toaster, toast } from "sonner";
+import ServiceFeature from "@/components/ui/featureService";
 
 const services = [
   {
@@ -83,6 +86,30 @@ const services = [
   },
 ];
 
+const card3DVariant: Variants = {
+  hidden: { opacity: 0, y: 60, rotateX: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 80,
+      damping: 12,
+    },
+  },
+};
+
+const card3D: Variants = {
+  hidden: { opacity: 0, y: 60, rotateX: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { type: "spring", stiffness: 80 },
+  },
+};
+
 export default function Home() {
   const [selectedService, setSelectedService] = useState<
     (typeof services)[0] | null
@@ -98,13 +125,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground px-6 py-16">
       {/* Heading */}
+      <Toaster position="top-center" richColors />
       <div className="text-center mb-16">
         <p className="text-sm uppercase tracking-widest text-blue-500 mb-3">
           Our Expertise
         </p>
         <h2 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
           We Build Products <br />
-          <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
             People Love to Use
           </span>
         </h2>
@@ -119,9 +147,16 @@ export default function Home() {
         className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
       >
         {services.map((service, index) => (
-          <div
+          <motion.div
+            variants={card3D}
+            whileHover={{
+              rotateY: 10,
+              rotateX: 6,
+              scale: 1.05,
+            }}
+            style={{ transformStyle: "preserve-3d", perspective: 1000 }}
             key={index}
-            className="relative group rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+            className="relative group rounded-2xl border border-border bg-card p-6   transition-all duration-300 hover:shadow-xl hover:-translate-y-2 "
           >
             {/* Glow */}
             <div className="absolute inset-0 rounded-2xl bg-blue-400 opacity-0 group-hover:opacity-10 blur-xl transition duration-300"></div>
@@ -145,7 +180,7 @@ export default function Home() {
                 <span>→</span>
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -200,45 +235,65 @@ export default function Home() {
         </div>
       )}
 
-      <div className="mt-24 max-w-6xl mx-auto px-6">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-blue-600/20 via-purple-600/20 to-transparent backdrop-blur-xl p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Glow Effects */}
-          <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/30 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
+      {/**feature */}
+      <section className=" mt-20">
+        <ServiceFeature />
+      </section>
+      {/**cta */}
+      <section className="px-6 md:px-16 pb-20 mt-20">
+        <motion.div
+          variants={card3DVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          whileHover={{
+            rotateY: 6,
+            rotateX: 6,
+            scale: 1.03,
+          }}
+          style={{ transformStyle: "preserve-3d" }}
+          className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-2xl"
+        >
+          {/* Glow Effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl"></div>
 
-          {/* Content */}
-          <div className="relative z-10 max-w-xl">
-            <p className="text-sm uppercase tracking-widest text-blue-400 mb-3">
-              Start Your Journey
-            </p>
-
-            <h3 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-              Let’s Build Something{" "}
-              <span className="text-blue-400">Extraordinary</span>
+          <div className="relative z-10">
+            <h3 className="text-3xl md:text-4xl font-bold leading-tight">
+              Build Scalable Software That Drives Growth <br />
+              <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-300 to-pink-300">
+                End-to-End Development Services You Can Trust
+              </span>
             </h3>
 
-            <p className="text-muted-foreground text-sm md:text-base">
-              From idea to execution, we craft scalable and modern digital
-              solutions tailored to your business needs.
+            <p className="mt-5 text-white/80 max-w-2xl mx-auto text-lg">
+              From idea to deployment, we deliver high-performance software
+              solutions tailored to your business needs. Our team specializes in
+              modern web, mobile, and AI-powered applications designed for
+              scalability, speed, and real-world impact.
             </p>
-          </div>
 
-          {/* Buttons */}
-          <div className="relative z-10 flex flex-col sm:flex-row gap-4">
-            <button className="px-7 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold transition shadow-lg shadow-blue-500/30">
-              Get Free Consultation →
-            </button>
+            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+              <button
+                onClick={() =>
+                  toast.info(
+                    "Let’s discuss your project and build something amazing together",
+                  )
+                }
+                className="px-8 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+              >
+                Get Started
+              </button>
 
-            <button
-              type="button"
-              onClick={handleViewServices}
-              className="px-7 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition text-white font-medium"
-            >
-              View Services
-            </button>
+              <button
+                onClick={handleViewServices}
+                className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300"
+              >
+                Explore Services
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </section>
     </div>
   );
 }
