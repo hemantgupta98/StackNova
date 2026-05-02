@@ -1,4 +1,24 @@
 "use client";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80 },
+  },
+};
+
+const card3D: Variants = {
+  hidden: { opacity: 0, y: 60, rotateX: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { type: "spring", stiffness: 80 },
+  },
+};
 
 export default function PricingTable() {
   const features = [
@@ -83,7 +103,16 @@ export default function PricingTable() {
   ];
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16">
+    <motion.section
+      variants={card3D}
+      whileHover={{
+        rotateY: 10,
+        rotateX: 6,
+        scale: 1.05,
+      }}
+      style={{ transformStyle: "preserve-3d", perspective: 1000 }}
+      className="mx-auto max-w-7xl px-4 py-16"
+    >
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
         ⚡ Plan Deep-Dive
       </h2>
@@ -129,6 +158,6 @@ export default function PricingTable() {
           </tbody>
         </table>
       </div>
-    </section>
+    </motion.section>
   );
 }
