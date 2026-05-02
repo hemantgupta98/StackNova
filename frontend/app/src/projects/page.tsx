@@ -108,7 +108,7 @@ export default function Home() {
                 &quot;StackNova didn’t just build an app; they transformed our
                 data strategy and improved delivery efficiency.&quot;
               </p>
-              <p className="mt-3 font-semibold">— Marcus Chen</p>
+              <p className="mt-3 font-semibold">— Hemant Gupta</p>
             </div>
           </div>
         </div>
@@ -119,8 +119,8 @@ export default function Home() {
             <h4 className="font-semibold mb-4">Project Quick Facts</h4>
             <ul className="text-sm text-muted-foreground space-y-2">
               <li>Client: Global Logistics Corp</li>
-              <li>Timeline: 8 Months</li>
-              <li>Team Size: 12 Engineers</li>
+              <li>Timeline: 2 Months</li>
+              <li>Team Size: 2 Engineers</li>
               <li>Platform: Web & Mobile</li>
             </ul>
           </div>

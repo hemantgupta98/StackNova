@@ -13,14 +13,18 @@ export default function CallToActionPage() {
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2">
               <Image
-                src="/logo.png"
+                src="/logo1.png"
                 alt="logo"
-                height={102}
-                width={102}
+                height={202}
+                width={202}
                 className="dark:filter-[brightness(0)_invert(1)]"
               />
-              <span className="text-xl font-semibold text-foreground">
-                StackNova IN
+              <span className="text-xl font-semibold tracking-wide">
+                <span className="text-sky-500 dark:text-sky-400">Stack</span>
+                <span className="text-amber-500 dark:text-amber-400">
+                  Nova
+                </span>{" "}
+                <span className="text-foreground">IN</span>
               </span>
             </div>
 
