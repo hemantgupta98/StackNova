@@ -100,17 +100,19 @@ export default function Home() {
       {/* Heading */}
       <div className="text-center mb-16">
         <p className="text-sm uppercase tracking-widest text-blue-500 mb-3">
-          Our Services
+          Our Expertise
         </p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">
-          Solutions We Provide
+        <h2 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+          We Build Products <br />
+          <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            People Love to Use
+          </span>
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          We build scalable, high-performance digital products to help your
-          business grow faster and smarter.
+        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          Combining design, technology, and strategy to create impactful digital
+          solutions that stand out in today’s competitive world.
         </p>
       </div>
-
       {/* Grid */}
       <div
         id="service"
