@@ -1,14 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { toast, Toaster } from "sonner";
-const Map = dynamic(() => import("@/components/ui/map"), {
-  ssr: false,
-  loading: () => <div className="h-100 w-full rounded-xl bg-muted" />,
-});
+import ScheduleModal from "@/components/ui/schedule-modal";
 
 type message = {
   name: string;
@@ -30,6 +26,26 @@ const card3DVariant: Variants = {
     },
   },
 };
+
+const containerStagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80 },
+  },
+};
+
 const handleViewConatct = () => {
   document.getElementById("contact")?.scrollIntoView({
     behavior: "smooth",
@@ -37,6 +53,7 @@ const handleViewConatct = () => {
   });
 };
 export default function ContactPage() {
+  const [scheduleCall, setScheduleCall] = useState(false);
   const {
     register,
     handleSubmit,
@@ -50,6 +67,12 @@ export default function ContactPage() {
       message: "",
     },
   });
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const yParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   const onSubmit: SubmitHandler<message> = async (data) => {
     console.log(data);
@@ -79,31 +102,62 @@ export default function ContactPage() {
     }
   };
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Toaster position="top-center" richColors />
-
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-background text-foreground"
+    >
       {/* Hero */}
-      <section className="text-center py-16 px-6">
-        <p className="text-sm text-blue-500 font-medium mb-3">
+      <motion.section
+        variants={containerStagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-center py-16 px-6"
+      >
+        <motion.p
+          variants={fadeUp}
+          className="text-sm text-blue-500 font-medium mb-3"
+        >
           START A CONVERSATION
-        </p>
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        </motion.p>
+        <motion.div style={{ y: yParallax }}></motion.div>
+        <motion.h2
+          variants={fadeUp}
+          className="text-4xl md:text-5xl font-bold mb-4"
+        >
           Let’s Create Something{" "}
           <span className="text-purple-600">Extraordinary</span>
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p
+          variants={fadeUp}
+          className="text-muted-foreground max-w-2xl mx-auto"
+        >
           From AI solutions to scalable web platforms — we help you design,
           build, and launch products that stand out in today’s digital world.
-        </p>
-      </section>
+        </motion.p>
+      </motion.section>
 
       {/* Main Grid */}
-      <section
+      <motion.section
         id="contact"
         className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 pb-16"
       >
         {/* Form */}
-        <div className="bg-card max-h-120 border border-border p-6 rounded-2xl shadow-sm">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          whileHover={{
+            rotateY: 6,
+            rotateX: 6,
+            scale: 1.03,
+          }}
+          className="bg-card max-h-120 border border-border p-6 rounded-2xl shadow-sm"
+        >
           <h3 className="text-xl font-semibold mb-4">Send a Message</h3>
 
           {/* Form logic added below - UI structure unchanged */}
@@ -166,28 +220,63 @@ export default function ContactPage() {
               {isSubmitting ? "Sending..." : "Send Secure Message"}
             </button>
           </form>
-        </div>
+        </motion.div>
 
         {/* Info */}
         <div className="space-y-4">
-          <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            whileHover={{
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
+            }}
+            className="bg-card border border-border p-5 rounded-xl shadow-sm"
+          >
             <p className="text-sm text-muted-foreground">Email</p>
-            <p className="font-medium">hr.stacknova@gmail.com</p>
-          </div>
+            <p className="font-medium">
+              hr.stacknova@gmail.com , hemantgupta8800@gmail.com
+            </p>
+          </motion.div>
 
-          <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            whileHover={{
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
+            }}
+            className="bg-card border border-border p-5 rounded-xl shadow-sm"
+          >
             <p className="text-sm text-muted-foreground">Phone</p>
-            <p className="font-medium">+91 9867742834</p>
-          </div>
+            <p className="font-medium">+91 9867742834 , 7061338208</p>
+          </motion.div>
 
-          <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            whileHover={{
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
+            }}
+            className="bg-card border border-border p-5 rounded-xl shadow-sm"
+          >
             <p className="text-sm text-muted-foreground">Address</p>
             <p className="font-medium">Namkum Ranchi, Jharkhand, 834010</p>
-          </div>
+          </motion.div>
 
           <div className="bg-muted  rounded-xl flex items-center justify-center text-muted-foreground"></div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA */}
 
@@ -231,13 +320,21 @@ export default function ContactPage() {
                 Get in Touch
               </button>
 
-              <button className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300">
+              <button
+                onClick={() => setScheduleCall(true)}
+                className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300"
+              >
                 Schedule a Call
               </button>
             </div>
           </div>
         </motion.div>
       </section>
-    </div>
+
+      <ScheduleModal
+        scheduleCall={scheduleCall}
+        setScheduleCall={setScheduleCall}
+      />
+    </motion.div>
   );
 }
