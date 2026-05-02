@@ -1,145 +1,173 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="bg-background text-foreground min-h-screen">
-      {/* Navbar */}
-
-      {/* Hero Section */}
-      <section className="text-center py-16 px-6">
-        <p className="text-sm text-blue-500 font-medium">
+    <main className="bg-linear-to-b from-background to-muted/40 text-foreground min-h-screen">
+      {/* Hero */}
+      <section className="text-center py-20 px-6">
+        <p className="text-sm text-blue-500 font-medium tracking-widest uppercase">
           Case Study · Deep Tech
         </p>
 
-        <h2 className="text-4xl md:text-5xl font-bold mt-4">
-          AuraLink: AI-Driven Fleet Management
+        <h2 className="text-4xl md:text-6xl font-bold mt-4 leading-tight">
+          AuraLink:{" "}
+          <span className="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            AI-Driven Fleet Management
+          </span>
         </h2>
 
-        <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+        <p className="text-muted-foreground mt-6 max-w-2xl mx-auto text-lg">
           Revolutionizing logistics with predictive maintenance and real-time
           route optimization for enterprise fleets.
         </p>
       </section>
 
-      {/* Content Section */}
-      <section className="grid md:grid-cols-3 gap-8 px-6 md:px-16 py-12">
-        {/* Left Content */}
-        <div className="md:col-span-2 space-y-10">
+      {/* Content */}
+      <section className="grid md:grid-cols-3 gap-10 px-6 md:px-16 py-12">
+        {/* LEFT */}
+        <div className="md:col-span-2 space-y-12">
           {/* Challenge */}
-          <div>
+          <motion.div
+            whileHover={{ y: -5 }}
+            className="p-6 rounded-2xl shadow-md border bg-background/60 backdrop-blur"
+          >
             <h3 className="text-xl font-semibold mb-2">The Challenge</h3>
             <p className="text-muted-foreground">
               The client struggled with fuel costs and downtime due to lack of
               real-time insights and inefficient logistics systems.
             </p>
-          </div>
+          </motion.div>
 
           {/* Solution */}
-          <div>
-            <h3 className="text-xl font-semibold mb-2">The Solution</h3>
+          <motion.div
+            whileHover={{ y: -5 }}
+            className="p-6 rounded-2xl shadow-md border bg-background/60 backdrop-blur"
+          >
+            <h3 className="text-xl font-semibold mb-4">The Solution</h3>
+
             <p className="text-muted-foreground">
               We built a distributed AI middleware using predictive analytics
               and dynamic routing to improve efficiency and reduce downtime.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mt-6">
-              <div className="p-4 border border-border rounded-xl">
-                <h4 className="font-semibold text-blue-600">
-                  Edge-First Architecture
-                </h4>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Local processing for faster decisions.
-                </p>
-              </div>
-
-              <div className="p-4 border border-border rounded-xl">
-                <h4 className="font-semibold text-blue-600">
-                  Predictive AI Engine
-                </h4>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Detects failures before they happen.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Tech Stack */}
-          <div>
-            <h3 className="text-xl font-semibold mb-3">
-              Core Technology Stack
-            </h3>
-            <div className="flex flex-wrap gap-2">
               {[
-                "React",
-                "TypeScript",
-                "Python",
-                "TensorFlow",
-                "AWS",
-                "PostgreSQL",
-              ].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 bg-muted rounded-full text-sm"
+                {
+                  title: "Edge-First Architecture",
+                  desc: "Local processing for faster decisions.",
+                },
+                {
+                  title: "Predictive AI Engine",
+                  desc: "Detects failures before they happen.",
+                },
+              ].map((item) => (
+                <motion.div
+                  key={item.title}
+                  whileHover={{ scale: 1.05 }}
+                  className="p-4 rounded-xl border bg-muted/40 hover:shadow-lg transition"
                 >
-                  {tech}
-                </span>
+                  <h4 className="font-semibold text-blue-600">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {item.desc}
+                  </p>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Showcase */}
+          {/* Projects Showcase (NEW 🔥) */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Project Showcase</h3>
+            <h3 className="text-xl font-semibold mb-6">Featured Projects</h3>
 
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="h-40 bg-muted rounded-xl flex items-center justify-center">
-                Image
-              </div>
-              <div className="h-40 bg-muted rounded-xl flex items-center justify-center">
-                Dashboard
-              </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Project 1 */}
+              <motion.div
+                whileHover={{ scale: 1.04 }}
+                className="group rounded-2xl overflow-hidden border shadow-md hover:shadow-xl transition bg-background"
+              >
+                <div className="h-40 bg-muted flex items-center justify-center">
+                  Preview
+                </div>
+
+                <div className="p-5">
+                  <h4 className="font-semibold text-lg">AI SaaS Dashboard</h4>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    A real-time analytics dashboard powered by AI insights and
+                    smart data visualization.
+                  </p>
+
+                  <button className="mt-4 text-sm text-blue-600 font-medium group-hover:underline">
+                    View Live →
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Project 2 */}
+              <motion.div
+                whileHover={{ scale: 1.04 }}
+                className="group rounded-2xl overflow-hidden border shadow-md hover:shadow-xl transition bg-background"
+              >
+                <div className="h-40 bg-muted flex items-center justify-center">
+                  Preview
+                </div>
+
+                <div className="p-5">
+                  <h4 className="font-semibold text-lg">
+                    Smart E-Commerce Platform
+                  </h4>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    AI-powered recommendations and lightning-fast checkout
+                    experience for modern businesses.
+                  </p>
+
+                  <button className="mt-4 text-sm text-blue-600 font-medium group-hover:underline">
+                    View Live →
+                  </button>
+                </div>
+              </motion.div>
             </div>
           </div>
 
           {/* Outcome */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">The Outcome</h3>
+            <h3 className="text-xl font-semibold mb-6">The Outcome</h3>
 
             <div className="grid sm:grid-cols-3 gap-4">
-              <div className="p-4 border border-border rounded-xl text-center">
-                <h4 className="text-2xl font-bold text-blue-600">+42%</h4>
-                <p className="text-sm text-muted-foreground">
-                  Efficiency Boost
-                </p>
-              </div>
-
-              <div className="p-4 border border-border rounded-xl text-center">
-                <h4 className="text-2xl font-bold text-blue-600">-28%</h4>
-                <p className="text-sm text-muted-foreground">Downtime</p>
-              </div>
-
-              <div className="p-4 border border-border rounded-xl text-center">
-                <h4 className="text-2xl font-bold text-blue-600">$3.2M</h4>
-                <p className="text-sm text-muted-foreground">Annual Savings</p>
-              </div>
+              {[
+                { value: "+42%", label: "Efficiency Boost" },
+                { value: "-28%", label: "Downtime" },
+                { value: "$3.2M", label: "Annual Savings" },
+              ].map((item) => (
+                <motion.div
+                  key={item.label}
+                  whileHover={{ scale: 1.05 }}
+                  className="p-5 rounded-xl border text-center bg-background shadow-sm hover:shadow-lg transition"
+                >
+                  <h4 className="text-2xl font-bold text-blue-600">
+                    {item.value}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{item.label}</p>
+                </motion.div>
+              ))}
             </div>
 
             {/* Testimonial */}
-            <div className="mt-6 p-6 bg-muted rounded-xl">
+            <div className="mt-8 p-6 rounded-2xl bg-muted/50 backdrop-blur border shadow-sm">
               <p className="italic text-muted-foreground">
                 &quot;StackNova didn’t just build an app; they transformed our
                 data strategy and improved delivery efficiency.&quot;
               </p>
-              <p className="mt-2 font-semibold">— Marcus Chen</p>
+              <p className="mt-3 font-semibold">— Marcus Chen</p>
             </div>
           </div>
         </div>
 
-        {/* Right Sidebar */}
+        {/* RIGHT SIDEBAR */}
         <div className="space-y-6">
-          <div className="p-6 border border-border rounded-xl">
+          <div className="p-6 rounded-2xl border shadow-md bg-background">
             <h4 className="font-semibold mb-4">Project Quick Facts</h4>
             <ul className="text-sm text-muted-foreground space-y-2">
               <li>Client: Global Logistics Corp</li>
@@ -149,55 +177,19 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="p-6 bg-blue-600 text-white rounded-xl">
+          {/* CTA (UPGRADED 🔥) */}
+          <div className="p-6 rounded-2xl bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg">
             <h4 className="font-semibold text-lg">Have a similar project?</h4>
-            <p className="text-sm mt-2">
-              Let’s discuss how AI can help your business grow.
+            <p className="text-sm mt-2 opacity-90">
+              Let’s build something powerful together using AI & modern tech.
             </p>
 
-            <button className="mt-4 bg-background text-blue-600 px-4 py-2 rounded-lg">
-              Talk to Experts
+            <button className="mt-5 bg-white text-blue-600 px-5 py-2 rounded-lg font-medium hover:scale-105 transition">
+              Start Your Project →
             </button>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-muted/40 mt-16 px-6 py-10">
-        <div className="grid md:grid-cols-4 gap-8 text-sm text-muted-foreground">
-          <div>
-            <h4 className="font-bold text-foreground mb-2">StackNova</h4>
-            <p>Building high-performance AI & web products.</p>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Company</h4>
-            <ul className="space-y-1">
-              <li>About</li>
-              <li>Team</li>
-              <li>Portfolio</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Support</h4>
-            <ul className="space-y-1">
-              <li>Contact</li>
-              <li>Pricing</li>
-              <li>Privacy Policy</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Social</h4>
-            <p>Twitter · LinkedIn · GitHub</p>
-          </div>
-        </div>
-
-        <p className="text-center text-muted-foreground mt-6 text-xs">
-          © 2026 StackNova. All rights reserved.
-        </p>
-      </footer>
     </main>
   );
 }
