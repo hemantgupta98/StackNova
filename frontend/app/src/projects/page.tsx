@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Projects from "@/components/ui/project";
 
 export default function Home() {
   return (
@@ -78,59 +79,6 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Projects Showcase (NEW 🔥) */}
-          <div>
-            <h3 className="text-xl font-semibold mb-6">Featured Projects</h3>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Project 1 */}
-              <motion.div
-                whileHover={{ scale: 1.04 }}
-                className="group rounded-2xl overflow-hidden border shadow-md hover:shadow-xl transition bg-background"
-              >
-                <div className="h-40 bg-muted flex items-center justify-center">
-                  Preview
-                </div>
-
-                <div className="p-5">
-                  <h4 className="font-semibold text-lg">AI SaaS Dashboard</h4>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    A real-time analytics dashboard powered by AI insights and
-                    smart data visualization.
-                  </p>
-
-                  <button className="mt-4 text-sm text-blue-600 font-medium group-hover:underline">
-                    View Live →
-                  </button>
-                </div>
-              </motion.div>
-
-              {/* Project 2 */}
-              <motion.div
-                whileHover={{ scale: 1.04 }}
-                className="group rounded-2xl overflow-hidden border shadow-md hover:shadow-xl transition bg-background"
-              >
-                <div className="h-40 bg-muted flex items-center justify-center">
-                  Preview
-                </div>
-
-                <div className="p-5">
-                  <h4 className="font-semibold text-lg">
-                    Smart E-Commerce Platform
-                  </h4>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    AI-powered recommendations and lightning-fast checkout
-                    experience for modern businesses.
-                  </p>
-
-                  <button className="mt-4 text-sm text-blue-600 font-medium group-hover:underline">
-                    View Live →
-                  </button>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
           {/* Outcome */}
           <div>
             <h3 className="text-xl font-semibold mb-6">The Outcome</h3>
@@ -189,6 +137,11 @@ export default function Home() {
             </button>
           </div>
         </div>
+      </section>
+
+      {/* Projects Showcase (NEW 🔥) */}
+      <section className="px-6 md:px-16 py-12">
+        <Projects />
       </section>
     </main>
   );
