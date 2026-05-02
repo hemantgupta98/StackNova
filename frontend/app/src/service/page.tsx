@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { X } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Toaster, toast } from "sonner";
 import ServiceFeature from "@/components/ui/featureService";
 
@@ -86,6 +86,25 @@ const services = [
   },
 ];
 
+const containerStagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80 },
+  },
+};
+
 const card3DVariant: Variants = {
   hidden: { opacity: 0, y: 60, rotateX: 15 },
   visible: {
@@ -121,28 +140,66 @@ export default function Home() {
       block: "start",
     });
   };
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const yParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground px-6 py-16">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-background text-foreground px-6 py-16"
+    >
       {/* Heading */}
       <Toaster position="top-center" richColors />
-      <div className="text-center mb-16">
-        <p className="text-sm uppercase tracking-widest text-blue-500 mb-3">
-          Our Expertise
-        </p>
-        <h2 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-          We Build Products <br />
-          <span className="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            People Love to Use
-          </span>
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-          Combining design, technology, and strategy to create impactful digital
-          solutions that stand out in today’s competitive world.
-        </p>
-      </div>
+
+      <motion.div
+        variants={containerStagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <motion.p
+          variants={fadeUp}
+          className="text-sm uppercase tracking-widest text-blue-500 mb-3"
+        >
+          Our Services
+        </motion.p>
+
+        <motion.div style={{ y: yParallax }}>
+          <motion.h2
+            variants={fadeUp}
+            className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight"
+          >
+            Software Solutions <br />
+            <span className="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              Built for Growth & Scale
+            </span>
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            className="text-muted-foreground max-w-2xl mx-auto text-lg"
+          >
+            From custom software and SaaS platforms to scalable web
+            applications, we deliver high-performance solutions designed to
+            solve real business problems and support long-term growth.
+          </motion.p>
+        </motion.div>
+      </motion.div>
+
       {/* Grid */}
-      <div
+      <motion.div
+        variants={containerStagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
         id="service"
         className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
       >
@@ -182,7 +239,7 @@ export default function Home() {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* CTA Section */}
 
@@ -294,6 +351,6 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-    </div>
+    </motion.div>
   );
 }
