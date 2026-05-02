@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 import {
@@ -15,7 +16,7 @@ import { ModeToggle } from "@/components/theme-toogle";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const router = useRouter();
   const navigationLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/src/about" },
@@ -67,7 +68,10 @@ export default function Header() {
           </NavigationMenu>
 
           {/* CTA */}
-          <button className="rounded-lg border border-primary/40 px-5 py-2 text-primary font-medium transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/30">
+          <button
+            onClick={() => router.push("/src/contact")}
+            className="rounded-lg border border-primary/40 px-5 py-2 text-primary font-medium transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/30"
+          >
             Get Consultation
           </button>
         </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { toast, Toaster } from "sonner";
+import { useRouter } from "next/navigation";
 
 const team = [
   {
@@ -112,7 +113,7 @@ const coFounderDetails = {
 export default function TeamPage() {
   const [showFounderDetails, setShowFounderDetails] = useState(false);
   const [showCoFounderDetails, setshowCoFounderDetails] = useState(false);
-
+  const router = useRouter();
   return (
     <main className="bg-background text-foreground min-h-screen">
       {/* Hero */}
@@ -462,7 +463,10 @@ export default function TeamPage() {
                 Join the Team
               </button>
 
-              <button className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300">
+              <button
+                onClick={() => router.push("/src/contact")}
+                className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300"
+              >
                 Stay Connected
               </button>
             </div>

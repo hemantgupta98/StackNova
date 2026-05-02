@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import { X } from "lucide-react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
-import { Toaster, toast } from "sonner";
+import { useRouter } from "next/navigation";
 import ServiceFeature from "@/components/ui/featureService";
 
 const services = [
@@ -133,7 +133,7 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState<
     (typeof services)[0] | null
   >(null);
-
+  const router = useRouter();
   const handleViewServices = () => {
     document.getElementById("service")?.scrollIntoView({
       behavior: "smooth",
@@ -156,7 +156,6 @@ export default function Home() {
       className="min-h-screen bg-background text-foreground px-6 py-16"
     >
       {/* Heading */}
-      <Toaster position="top-center" richColors />
 
       <motion.div
         variants={containerStagger}
@@ -331,11 +330,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <button
-                onClick={() =>
-                  toast.info(
-                    "Let’s discuss your project and build something amazing together",
-                  )
-                }
+                onClick={() => router.push("/src/contact")}
                 className="px-8 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 Get Started
