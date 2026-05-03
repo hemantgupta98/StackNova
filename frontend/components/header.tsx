@@ -18,20 +18,20 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const navigationLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/src/about" },
-    { name: "Service", href: "/src/service" },
-    { name: "Projects", href: "/src/projects" },
-    { name: "Team", href: "/src/team" },
-    { name: "Pricing", href: "/src/pricing" },
-    { name: "Contact", href: "/src/contact" },
+    { name: "Home", href: "/home" },
+    { name: "About", href: "/about" },
+    { name: "Service", href: "/service" },
+    { name: "Projects", href: "/projects" },
+    { name: "Team", href: "/team" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/70 backdrop-blur-xl supports-backdrop-filter:bg-background/60">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/src/home" className="flex h-full shrink-0 items-center">
+        <Link href="/home" className="flex h-full shrink-0 items-center">
           <Image
             src="/logo1.png"
             alt="StackNova Logo"
@@ -68,7 +68,7 @@ export default function Header() {
 
           {/* CTA */}
           <button
-            onClick={() => router.push("/src/contact")}
+            onClick={() => router.push("/contact")}
             className="rounded-lg border border-primary/40 px-5 py-2 text-primary font-medium transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/30"
           >
             Get Consultation

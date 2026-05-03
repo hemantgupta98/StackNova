@@ -270,7 +270,7 @@ export default function Home() {
             </p>
 
             <button
-              onClick={() => router.push("/src/pricing")}
+              onClick={() => router.push("/pricing")}
               className="mt-5 bg-white text-blue-600 px-5 py-2 rounded-lg font-medium hover:scale-105 transition cursor-pointer"
             >
               Start Your Project →

@@ -261,7 +261,7 @@ export default function PricingPage() {
                       <button
                         onClick={() => {
                           setSelectedPlan(null);
-                          router.push("/src/contact");
+                          router.push("/contact");
                         }}
                         className="w-1/2 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
                       >
@@ -384,7 +384,7 @@ export default function PricingPage() {
                       <button
                         onClick={() => {
                           setSelectedPlan(null);
-                          router.push("/src/contact");
+                          router.push("/contact");
                         }}
                         className="w-1/2 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
                       >
@@ -438,7 +438,7 @@ export default function PricingPage() {
 
             <motion.button
               className={`w-full bg-linear-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg disabled:opacity-60 cursor-pointer  mt-10`}
-              onClick={() => router.push("/src/contact")}
+              onClick={() => router.push("/contact")}
               type="button"
             >
               Contact Us
@@ -507,7 +507,7 @@ export default function PricingPage() {
               </button>
 
               <button
-                onClick={() => router.push("/src/contact")}
+                onClick={() => router.push("/contact")}
                 className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300"
               >
                 Contact Sales

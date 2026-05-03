@@ -154,7 +154,7 @@ export default function Home() {
       action: {
         label: "OK",
         onClick: async () => {
-          await router.push("/src/contact");
+          await router.push("/contact");
 
           setTimeout(() => {
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -347,7 +347,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <button
-                onClick={() => router.push("/src/contact")}
+                onClick={() => router.push("/contact")}
                 className="px-8 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 Get Started

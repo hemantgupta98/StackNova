@@ -464,7 +464,7 @@ export default function TeamPage() {
               </button>
 
               <button
-                onClick={() => router.push("/src/contact")}
+                onClick={() => router.push("/contact")}
                 className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300"
               >
                 Stay Connected

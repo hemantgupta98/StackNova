@@ -33,7 +33,7 @@ export default function CallToActionPage() {
                 height={202}
                 width={202}
                 className="dark:filter-[brightness(0)_invert(1)] cursor-pointer"
-                onClick={() => router.push("/src/home")}
+                onClick={() => router.push("/home")}
               />
               <span className="text-xl font-semibold tracking-wide">
                 <span className="text-sky-500 dark:text-sky-400">Stack</span>
@@ -55,10 +55,10 @@ export default function CallToActionPage() {
           <div>
             <h4 className="mb-4 font-semibold text-foreground">Product</h4>
             <ul className="space-y-2 text-muted-foreground cursor-pointer">
-              <li onClick={() => router.push("/src/service")}>Features</li>
+              <li onClick={() => router.push("/service")}>Features</li>
               <li>Integrations</li>
 
-              <li onClick={() => router.push("/src/pricing")}>Pricing</li>
+              <li onClick={() => router.push("/pricing")}>Pricing</li>
             </ul>
           </div>
 
@@ -78,10 +78,10 @@ export default function CallToActionPage() {
           <div>
             <h4 className="mb-4 font-semibold text-foreground">Company</h4>
             <ul className="space-y-2 text-muted-foreground cursor-pointer">
-              <li onClick={() => router.push("/src/about")}>About Us</li>
+              <li onClick={() => router.push("/about")}>About Us</li>
               <li onClick={() => setSelectedService("carrer")}>Careers</li>
               <li onClick={() => setSelectedService("legal")}>Legal</li>
-              <li onClick={() => router.push("/src/contact")}>Contact</li>
+              <li onClick={() => router.push("/contact")}>Contact</li>
             </ul>
           </div>
         </div>
