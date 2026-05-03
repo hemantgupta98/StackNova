@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { X } from "lucide-react";
+import axios from "axios";
 
 type FormData = {
   name: string;
@@ -26,10 +27,32 @@ export default function ScheduleModal({
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     console.log(data);
-    alert("submitted");
-    reset();
+    try {
+      const apiBase = (
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
+      ).replace(/\/$/, "");
+      const res = await axios(`${apiBase}/call`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        data,
+      });
+
+      if (res.status < 200 || res.status >= 300) {
+        const err = res.data ?? null;
+        const msg =
+          err?.error ||
+          "There was an error sending your message. Please try again later.";
+        alert(msg);
+      } else {
+        alert("Thanks — your message was sent.");
+        reset();
+      }
+    } catch (error) {
+      console.error(error);
+      alert("There was an error sending your message. Please try again later.");
+    }
     setScheduleCall(false);
   };
 

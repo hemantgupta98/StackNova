@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import sendWithResend from "./service/contactMail.js";
 import sendWithQuery from "./service/queryMail.js";
+import sendWithCall from "./service/callMail.js";
 
 dotenv.config({ override: true });
 
@@ -49,19 +50,16 @@ app.post("/query", async (req, res) => {
     const data = req.body;
     console.log("📩 New Form Data Received:\n", JSON.stringify(data, null, 2));
 
-    // Validate required fields
     if (!data.name || !data.email || !data.message) {
       return res.status(400).json({
         error: "Required fields missing",
       });
     }
 
-    // Validate email format
     if (!validateEmail(data.email)) {
       return res.status(400).json({ error: "Invalid email address" });
     }
 
-    // All fields from queryMail: name, email, company, projectType, budget, timeline, message
     await sendWithQuery(process.env.ADMIN_EMAIL, {
       name: data.name,
       email: data.email,
@@ -69,6 +67,35 @@ app.post("/query", async (req, res) => {
       projectType: data.projectType || "Not specified",
       budget: data.budget || "Not specified",
       timeline: data.timeline || "Not specified",
+      message: data.message,
+    });
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+app.post("/call", async (req, res) => {
+  try {
+    const data = req.body;
+    console.log("📩 New Form Data Received:\n", JSON.stringify(data, null, 2));
+
+    if (!data.name || !data.email || !data.message) {
+      return res.status(400).json({
+        error: "Required fields missing",
+      });
+    }
+
+    if (!validateEmail(data.email)) {
+      return res.status(400).json({ error: "Invalid email address" });
+    }
+
+    await sendWithCall(process.env.ADMIN_EMAIL, {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
       message: data.message,
     });
 

@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-async function sendWithQuery(adminEmail, body) {
+async function sendWithCall(adminEmail, body) {
   if (!process.env.RESEND_API_KEY) {
     throw new Error("RESEND_API_KEY must be set in environment");
   }
@@ -15,7 +15,7 @@ async function sendWithQuery(adminEmail, body) {
   const adminMail = {
     from: `StackNova <${senderEmail}>`,
     to: recipientEmail,
-    subject: `🚀 New Client Project Inquiry from ${name}`,
+    subject: `🚀 New Client Call Inquiry from ${name}`,
     replyTo: body.email,
 
     html: `
@@ -24,7 +24,7 @@ async function sendWithQuery(adminEmail, body) {
 
         <!-- Header -->
         <div style="background:linear-gradient(135deg,#4f46e5,#06b6d4); color:#fff; padding:25px; text-align:center;">
-          <h2 style="margin:0;">🚀 New Client Project Inquiry</h2>
+          <h2 style="margin:0;">🚀 New Client Call Inquiry</h2>
           <p style="margin-top:5px; font-size:14px;">StackNova Website Form</p>
         </div>
 
@@ -43,27 +43,14 @@ async function sendWithQuery(adminEmail, body) {
               <td style="padding:8px;">${body.email}</td>
             </tr>
             <tr>
-              <td style="padding:8px; font-weight:bold;">Company:</td>
-              <td style="padding:8px;">${body.company || "N/A"}</td>
+              <td style="padding:8px; font-weight:bold;">Phone:</td>
+              <td style="padding:8px;">${body.phone || "N/A"}</td>
             </tr>
           </table>
 
           <h3 style="margin:20px 0 10px;">📊 Project Info</h3>
 
-          <table style="width:100%; border-collapse:collapse; font-size:14px;">
-            <tr style="background:#f9fafb;">
-              <td style="padding:8px; font-weight:bold;">Project Type:</td>
-              <td style="padding:8px;">${body.projectType}</td>
-            </tr>
-            <tr>
-              <td style="padding:8px; font-weight:bold;">Budget:</td>
-              <td style="padding:8px;">${body.budget}</td>
-            </tr>
-            <tr style="background:#f9fafb;">
-              <td style="padding:8px; font-weight:bold;">Timeline:</td>
-              <td style="padding:8px;">${body.timeline}</td>
-            </tr>
-          </table>
+          
 
           <h3 style="margin:20px 0 10px;">💬 Message</h3>
 
@@ -94,4 +81,4 @@ async function sendWithQuery(adminEmail, body) {
   console.log("Admin mail sent:", res);
 }
 
-export default sendWithQuery;
+export default sendWithCall;

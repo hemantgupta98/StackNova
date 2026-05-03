@@ -261,9 +261,7 @@ export default function PricingPage() {
                       <button
                         onClick={() => {
                           setSelectedPlan(null);
-                          toast.success(
-                            `Thanks for choosing ${selectedPlan.name}! We'll contact you within 24 hours.`,
-                          );
+                          router.push("/src/contact");
                         }}
                         className="w-1/2 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
                       >
@@ -385,10 +383,8 @@ export default function PricingPage() {
 
                       <button
                         onClick={() => {
-                          setproPlan(null);
-                          toast.success(
-                            `Thanks for choosing ${proPlan.name}! We'll contact you within 24 hours.`,
-                          );
+                          setSelectedPlan(null);
+                          router.push("/src/contact");
                         }}
                         className="w-1/2 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
                       >
