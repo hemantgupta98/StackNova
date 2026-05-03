@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { toast as sonnerToast, type ToastOptions } from "sonner"
+import { toast as sonnerToast } from "sonner"
+
+type ToastOptions = Parameters<typeof sonnerToast>[1]
 
 const GAP_MS = 600
 
