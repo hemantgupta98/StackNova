@@ -235,7 +235,7 @@ export default function Home() {
             <p className="mt-5 text-white/80 max-w-2xl mx-auto text-lg">
               We help startups and businesses design, build, and launch powerful
               web applications and AI-driven solutions that are fast, scalable,
-              and built for real growth — not just demos.
+              and build for real growth — not just demos.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
