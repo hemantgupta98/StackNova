@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Toaster } from "sonner";
-import { qToast, qInfo, qSuccess } from "@/lib/queuedToast";
+import axios from "axios";
 
 type FormData = {
   name: string;
@@ -25,29 +24,32 @@ export default function PricingInquiryForm() {
     reset,
   } = useForm<FormData>();
 
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [showTyping, setShowTyping] = useState(false);
-  const [confirmingData, setConfirmingData] = useState<FormData | null>(null);
-
-  const onSubmit = async (data: FormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log("Inquiry data:", data);
-    setConfirmingData(data);
-    setShowConfirmation(true);
-    setShowTyping(true);
+    try {
+      const apiBase = (
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
+      ).replace(/\/$/, "");
+      const res = await axios(`${apiBase}/query`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        data,
+      });
 
-    qToast("Sending inquiry...");
-
-    if (data.sendCopy && data.email) {
-      console.log(`Will send a copy to ${data.email}`);
-      qInfo("A copy will be sent to your email if provided.");
+      if (res.status < 200 || res.status >= 300) {
+        const err = res.data ?? null;
+        const msg =
+          err?.error ||
+          "There was an error sending your message. Please try again later.";
+        alert(msg);
+      } else {
+        alert("Thanks — your message was sent.");
+        reset();
+      }
+    } catch (error) {
+      console.error(error);
+      alert("There was an error sending your message. Please try again later.");
     }
-
-    // Simulate processing/typing for better UX
-    await new Promise((res) => setTimeout(res, 1400));
-    setShowTyping(false);
-
-    qSuccess("Inquiry submitted successfully! We'll contact you soon.");
-    reset();
   };
 
   const btnGradient =
@@ -191,61 +193,11 @@ export default function PricingInquiryForm() {
           )}
         </div>
 
-        {/* Send copy checkbox */}
-        <div className="flex items-center gap-2">
-          <input
-            id="sendCopy"
-            type="checkbox"
-            {...register("sendCopy")}
-            className="h-4 w-4"
-          />
-          <label htmlFor="sendCopy" className="text-sm">
-            Send me a copy of this inquiry
-          </label>
-        </div>
-
         {/* Submit */}
         <button type="submit" disabled={isSubmitting} className={btnGradient}>
           {isSubmitting ? "Submitting..." : "Get Pricing Quote"}
         </button>
       </form>
-
-      {/* Confirmation panel shown after submit */}
-      {showConfirmation && confirmingData && (
-        <div
-          role="status"
-          aria-live="polite"
-          className="mt-6 rounded-lg border border-border bg-card p-4"
-        >
-          <p className="font-semibold">Thanks, {confirmingData.name}!</p>
-          {showTyping ? (
-            <p className="text-sm text-muted-foreground">
-              Our team is reviewing your inquiry
-              <span className="animate-pulse">...</span>
-            </p>
-          ) : (
-            <>
-              <p className="text-sm text-muted-foreground">
-                We received your message and will contact you shortly.
-              </p>
-              <p className="text-xs text-muted-foreground mt-2">
-                We typically respond within 24 hours.
-              </p>
-              <div className="mt-3">
-                <button
-                  className="text-sm text-blue-600 underline"
-                  onClick={() => {
-                    setShowConfirmation(false);
-                    setConfirmingData(null);
-                  }}
-                >
-                  Submit another inquiry
-                </button>
-              </div>
-            </>
-          )}
-        </div>
-      )}
     </section>
   );
 }

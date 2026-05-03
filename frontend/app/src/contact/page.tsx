@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ScheduleModal from "@/components/ui/schedule-modal";
+import axios from "axios";
 
 type message = {
   name: string;
@@ -80,14 +81,14 @@ export default function ContactPage() {
       const apiBase = (
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
       ).replace(/\/$/, "");
-      const res = await fetch(`${apiBase}/mail`, {
+      const res = await axios(`${apiBase}/mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        data,
       });
 
-      if (!res.ok) {
-        const err = await res.json().catch(() => null);
+      if (res.status < 200 || res.status >= 300) {
+        const err = res.data ?? null;
         const msg =
           err?.error ||
           "There was an error sending your message. Please try again later.";

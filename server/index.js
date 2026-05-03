@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import sendWithResend from "./service/contactMail.js";
+import sendWithQuery from "./service/queryMail.js";
 
 dotenv.config({ override: true });
 
@@ -34,12 +35,32 @@ app.post("/mail", async (req, res) => {
       return res.status(400).json({ error: "Invalid email address" });
     }
 
-    await sendWithResend(adminEmail, { name, email, company, message });
+    await sendWithQuery(adminEmail, { name, email, company, message });
 
     return res.json({ success: true });
   } catch (err) {
     console.error("Contact API error:", err);
     return res.status(500).json({ error: err?.message || "Internal error" });
+  }
+});
+
+app.post("/query", async (req, res) => {
+  try {
+    const data = req.body;
+    console.log("📩 New Form Data Received:\n", JSON.stringify(data, null, 2));
+
+    if (!data.name || !data.email || !data.message) {
+      return res.status(400).json({
+        error: "Required fields missing",
+      });
+    }
+
+    await sendWithResend(process.env.ADMIN_EMAIL, data);
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
