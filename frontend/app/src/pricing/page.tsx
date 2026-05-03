@@ -466,6 +466,7 @@ export default function PricingPage() {
       >
         <Query />
       </motion.div>
+      {/**cta */}
       <section className="px-6 md:px-16 pb-20">
         <motion.div
           variants={card3DVariant}
