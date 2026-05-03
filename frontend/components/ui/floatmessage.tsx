@@ -11,7 +11,7 @@ export default function FloatingActions() {
         href="https://wa.me/919867742834?text=Hello%20StackNova%2C%20I%20want%20to%20discuss%20a%20project"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition"
+        className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transform transition-transform duration-200 hover:scale-110 hover:shadow-[0_10px_30px_rgba(34,197,94,0.45)]"
       >
         <FaWhatsapp size={22} />
       </a>
@@ -21,7 +21,7 @@ export default function FloatingActions() {
         href="https://www.linkedin.com/company/stacknova-in"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition"
+        className="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-full shadow-lg transform transition-transform duration-200 hover:scale-110 hover:shadow-[0_10px_30px_rgba(34,197,94,0.45)]"
       >
         <FaLinkedinIn size={22} />
       </a>
@@ -31,7 +31,7 @@ export default function FloatingActions() {
         href="https://mail.google.com/mail/?view=cm&fs=1&to=hr.stacknova@gmail.com&su=Project Inquiry&body=Hello StackNova"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-blue-400 hover:bg-blue-500 text-white p-4 rounded-full shadow-lg transition"
+        className="bg-red-500 hover:bg-red-600 text-white p-4 rounded-full shadow-lg transform transition-transform duration-200 hover:scale-110 hover:shadow-[0_10px_30px_rgba(34,197,94,0.45)]"
       >
         <Mail size={22} />
       </a>

@@ -324,9 +324,9 @@ export default function Home() {
                 View Projects
               </button>
 
-              <button className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300">
+              {/**<button className="px-8 py-3 rounded-xl border border-white/40 text-white hover:bg-white/10 transition-all duration-300">
                 See Case Studies
-              </button>
+              </button> */}
             </div>
           </div>
         </motion.div>
