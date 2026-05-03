@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import Projects from "@/components/ui/project";
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const card3DVariant: Variants = {
   hidden: { opacity: 0, y: 60, rotateX: 15 },
@@ -16,6 +18,25 @@ const card3DVariant: Variants = {
     },
   },
 };
+const containerStagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80 },
+  },
+};
+
 const handleViewProject = () => {
   document.getElementById("project")?.scrollIntoView({
     behavior: "smooth",
@@ -23,26 +44,58 @@ const handleViewProject = () => {
   });
 };
 export default function Home() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const yParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const router = useRouter();
   return (
-    <main className="bg-linear-to-b from-background to-muted/40 text-foreground min-h-screen">
+    <motion.main
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="bg-linear-to-b from-background to-muted/40 text-foreground min-h-screen"
+    >
       {/* Hero */}
-      <section className="text-center py-20 px-6">
-        <p className="text-sm text-blue-500 font-medium tracking-widest uppercase">
-          Case Study · Deep Tech
-        </p>
+      <motion.section
+        variants={containerStagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-center py-20 px-6"
+      >
+        <motion.p
+          variants={fadeUp}
+          className="text-sm text-blue-500 font-medium tracking-widest uppercase"
+        >
+          Selected Work · Client Showcase
+        </motion.p>
 
-        <h2 className="text-4xl md:text-6xl font-bold mt-4 leading-tight">
-          AuraLink:{" "}
-          <span className="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            AI-Driven Fleet Management
-          </span>
-        </h2>
+        <motion.div style={{ y: yParallax }}>
+          <motion.h2
+            variants={fadeUp}
+            className="text-4xl md:text-6xl font-bold mt-4 leading-tight"
+          >
+            Crafting Exceptional Digital Experiences{" "}
+            <span className="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              for Visionary Brands
+            </span>
+          </motion.h2>
 
-        <p className="text-muted-foreground mt-6 max-w-2xl mx-auto text-lg">
-          Revolutionizing logistics with predictive maintenance and real-time
-          route optimization for enterprise fleets.
-        </p>
-      </section>
+          <motion.p
+            variants={fadeUp}
+            className="text-muted-foreground mt-6 max-w-2xl mx-auto text-lg"
+          >
+            A curated collection of high-impact projects where strategy, design,
+            and technology converge to create meaningful, scalable, and visually
+            refined digital products.
+          </motion.p>
+        </motion.div>
+      </motion.section>
 
       {/* Content */}
       <section className="grid md:grid-cols-3 gap-10 px-6 md:px-16 py-12">
@@ -50,7 +103,16 @@ export default function Home() {
         <div className="md:col-span-2 space-y-12">
           {/* Challenge */}
           <motion.div
-            whileHover={{ y: -5 }}
+            variants={card3DVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            whileHover={{
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
+            }}
+            style={{ transformStyle: "preserve-3d" }}
             className="p-6 rounded-2xl shadow-md border bg-background/60 backdrop-blur"
           >
             <h3 className="text-xl font-semibold mb-2">The Challenge</h3>
@@ -62,7 +124,16 @@ export default function Home() {
 
           {/* Solution */}
           <motion.div
-            whileHover={{ y: -5 }}
+            variants={card3DVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            whileHover={{
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
+            }}
+            style={{ transformStyle: "preserve-3d" }}
             className="p-6 rounded-2xl shadow-md border bg-background/60 backdrop-blur"
           >
             <h3 className="text-xl font-semibold mb-4">The Solution</h3>
@@ -101,11 +172,23 @@ export default function Home() {
           <div>
             <h3 className="text-xl font-semibold mb-6">The Outcome</h3>
 
-            <div className="grid sm:grid-cols-3 gap-4">
+            <motion.div
+              variants={card3DVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              whileHover={{
+                rotateY: 6,
+                rotateX: 6,
+                scale: 1.03,
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="grid sm:grid-cols-3 gap-4"
+            >
               {[
                 { value: "+42%", label: "Efficiency Boost" },
-                { value: "-28%", label: "Downtime" },
-                { value: "$3.2M", label: "Annual Savings" },
+                { value: "2", label: "Projects Delivered" },
+                { value: "100%", label: "Client Satisfaction" },
               ].map((item) => (
                 <motion.div
                   key={item.label}
@@ -118,42 +201,81 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground">{item.label}</p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Testimonial */}
-            <div className="mt-8 p-6 rounded-2xl bg-muted/50 backdrop-blur border shadow-sm">
+            <motion.div
+              variants={card3DVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              whileHover={{
+                rotateY: 6,
+                rotateX: 6,
+                scale: 1.03,
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="mt-8 p-6 rounded-2xl bg-muted/50 backdrop-blur border shadow-sm"
+            >
               <p className="italic text-muted-foreground">
                 &quot;StackNova didn’t just build an app; they transformed our
                 data strategy and improved delivery efficiency.&quot;
               </p>
               <p className="mt-3 font-semibold">— Hemant Gupta</p>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* RIGHT SIDEBAR */}
         <div className="space-y-6">
-          <div className="p-6 rounded-2xl border shadow-md bg-background">
+          <motion.div
+            variants={card3DVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            whileHover={{
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
+            }}
+            style={{ transformStyle: "preserve-3d" }}
+            className="p-6 rounded-2xl border shadow-md bg-background"
+          >
             <h4 className="font-semibold mb-4">Project Quick Facts</h4>
             <ul className="text-sm text-muted-foreground space-y-2">
-              <li>Client: Global Logistics Corp</li>
-              <li>Timeline: 2 Months</li>
-              <li>Team Size: 2 Engineers</li>
-              <li>Platform: Web & Mobile</li>
+              <li>Client: Confidential Enterprise Partner</li>
+              <li>Scope: AI-Powered Fleet Optimization System</li>
+              <li>Timeline: 8 Weeks Execution</li>
+              <li>Platforms: Web Application & Mobile Experience</li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* CTA (UPGRADED 🔥) */}
-          <div className="p-6 rounded-2xl bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg">
+          <motion.div
+            variants={card3DVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            whileHover={{
+              rotateY: 6,
+              rotateX: 6,
+              scale: 1.03,
+            }}
+            style={{ transformStyle: "preserve-3d" }}
+            className="p-6 rounded-2xl bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+          >
             <h4 className="font-semibold text-lg">Have a similar project?</h4>
             <p className="text-sm mt-2 opacity-90">
               Let’s build something powerful together using AI & modern tech.
             </p>
 
-            <button className="mt-5 bg-white text-blue-600 px-5 py-2 rounded-lg font-medium hover:scale-105 transition">
+            <button
+              onClick={() => router.push("/src/pricing")}
+              className="mt-5 bg-white text-blue-600 px-5 py-2 rounded-lg font-medium hover:scale-105 transition cursor-pointer"
+            >
               Start Your Project →
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -209,6 +331,6 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-    </main>
+    </motion.main>
   );
 }

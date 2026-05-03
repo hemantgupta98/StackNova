@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useRouter } from "next/navigation";
 import ServiceFeature from "@/components/ui/featureService";
+import { toast, Toaster } from "sonner";
 
 const services = [
   {
@@ -147,6 +148,21 @@ export default function Home() {
   });
   const yParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
+  const handleGetStarted = () => {
+    toast(" Let's get started!", {
+      description: "Drop a simple message and I'll respond within 24 hours.",
+      action: {
+        label: "OK",
+        onClick: async () => {
+          await router.push("/src/contact");
+
+          setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }, 100);
+        },
+      },
+    });
+  };
   return (
     <motion.div
       ref={ref}
@@ -156,7 +172,7 @@ export default function Home() {
       className="min-h-screen bg-background text-foreground px-6 py-16"
     >
       {/* Heading */}
-
+      <Toaster position="top-center" expand richColors />
       <motion.div
         variants={containerStagger}
         initial="hidden"
@@ -283,7 +299,10 @@ export default function Home() {
                 </ul>
               </div>
 
-              <button className="w-full px-7 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold transition shadow-lg shadow-blue-500/30">
+              <button
+                onClick={handleGetStarted}
+                className="w-full px-7 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold transition shadow-lg shadow-blue-500/30"
+              >
                 Get Started
               </button>
             </div>
