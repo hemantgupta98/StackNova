@@ -6,6 +6,7 @@ import FloatingActions from "@/components/ui/floatmessage";
 import Footer from "@/components/ui/footer";
 import { ThemeProvider } from "@/components/ui/theme";
 import favicon from "./favicon.png";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +47,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Analytics />
           <FloatingActions />
           <Footer />
         </ThemeProvider>
