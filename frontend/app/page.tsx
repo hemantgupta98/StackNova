@@ -1,9 +1,11 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React from "react";
+
+export default function HeroSection() {
   return (
     <>
-    <h1>sourav</h1>
+      <h1>hemant</h1>
     </>
   );
 }

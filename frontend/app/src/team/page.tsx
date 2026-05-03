@@ -196,7 +196,7 @@ export default function TeamPage() {
             {/* Content */}
             <div className="text-center md:text-left">
               <p className="text-sm text-blue-500 font-semibold tracking-wide">
-                Founder & CEO
+                Founder
               </p>
               <h3 className="text-2xl md:text-3xl font-bold mt-1">
                 Hemant Gupta
@@ -283,7 +283,7 @@ export default function TeamPage() {
             {/* Content */}
             <div className="text-center md:text-left">
               <p className="text-sm text-purple-500 font-semibold tracking-wide">
-                Co-Founder & CTO
+                Co-Founder
               </p>
               <h3 className="text-2xl md:text-3xl font-bold mt-1">
                 Sourav Verma
