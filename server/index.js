@@ -49,13 +49,28 @@ app.post("/query", async (req, res) => {
     const data = req.body;
     console.log("📩 New Form Data Received:\n", JSON.stringify(data, null, 2));
 
+    // Validate required fields
     if (!data.name || !data.email || !data.message) {
       return res.status(400).json({
         error: "Required fields missing",
       });
     }
 
-    await sendWithResend(process.env.ADMIN_EMAIL, data);
+    // Validate email format
+    if (!validateEmail(data.email)) {
+      return res.status(400).json({ error: "Invalid email address" });
+    }
+
+    // All fields from queryMail: name, email, company, projectType, budget, timeline, message
+    await sendWithQuery(process.env.ADMIN_EMAIL, {
+      name: data.name,
+      email: data.email,
+      company: data.company || "N/A",
+      projectType: data.projectType || "Not specified",
+      budget: data.budget || "Not specified",
+      timeline: data.timeline || "Not specified",
+      message: data.message,
+    });
 
     res.status(200).json({ success: true });
   } catch (err) {
