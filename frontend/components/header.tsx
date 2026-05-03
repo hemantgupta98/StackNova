@@ -18,7 +18,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const navigationLinks = [
-    { name: "Home", href: "/home" },
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Service", href: "/service" },
     { name: "Projects", href: "/projects" },
@@ -31,7 +31,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/70 backdrop-blur-xl supports-backdrop-filter:bg-background/60">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/home" className="flex h-full shrink-0 items-center">
+        <Link href="/" className="flex h-full shrink-0 items-center">
           <Image
             src="/logo1.png"
             alt="StackNova Logo"

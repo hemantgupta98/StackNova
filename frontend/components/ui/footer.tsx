@@ -33,7 +33,7 @@ export default function CallToActionPage() {
                 height={202}
                 width={202}
                 className="dark:filter-[brightness(0)_invert(1)] cursor-pointer"
-                onClick={() => router.push("/home")}
+                onClick={() => router.push("/")}
               />
               <span className="text-xl font-semibold tracking-wide">
                 <span className="text-sky-500 dark:text-sky-400">Stack</span>
