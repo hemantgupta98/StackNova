@@ -68,6 +68,7 @@ export default function Header() {
 
           {/* CTA */}
           <button
+            type="submit"
             onClick={() => router.push("/contact")}
             className="rounded-lg border border-primary/40 px-5 py-2 text-primary font-medium transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/30"
           >
