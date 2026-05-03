@@ -239,7 +239,7 @@ export default function ContactPage() {
           >
             <p className="text-sm text-muted-foreground">Email</p>
             <p className="font-medium">
-              hr.stacknova@gmail.com , hemantgupta8800@gmail.com
+              hrstacknova@gmail.com , hemantgupta8800@gmail.com
             </p>
           </motion.div>
 
