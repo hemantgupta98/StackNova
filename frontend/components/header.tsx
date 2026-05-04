@@ -66,7 +66,7 @@ export default function Header() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* CTA */}
+          {/* CTA 
           <button
             type="submit"
             onClick={() => router.push("/contact")}
@@ -74,6 +74,7 @@ export default function Header() {
           >
             Get Consultation
           </button>
+          */}
         </div>
 
         {/* Mobile Menu Button */}
