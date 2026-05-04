@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
-import { h3 } from "motion/react-client";
 
 export default function CallToActionPage() {
   const router = useRouter();
