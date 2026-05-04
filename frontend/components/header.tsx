@@ -66,7 +66,6 @@ export default function Header() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* CTA 
           <button
             type="submit"
             onClick={() => router.push("/contact")}
@@ -74,7 +73,6 @@ export default function Header() {
           >
             Get Consultation
           </button>
-          */}
         </div>
 
         {/* Mobile Menu Button */}
@@ -106,7 +104,11 @@ export default function Header() {
             ))}
 
             {/* CTA inside mobile */}
-            <button className="mt-3 w-full rounded-lg border border-primary/40 px-4 py-2 text-primary font-medium transition-all duration-300 hover:bg-primary hover:text-white">
+            <button
+              onClick={() => router.push("/contact")}
+              type="submit"
+              className="mt-3 w-full rounded-lg border border-primary/40 px-4 py-2 text-primary font-medium transition-all duration-300 hover:bg-primary hover:text-white"
+            >
               Get Consultation
             </button>
           </div>
