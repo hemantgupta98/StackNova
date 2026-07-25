@@ -305,7 +305,7 @@ export default function Home() {
             <h3 className="text-3xl md:text-4xl font-bold leading-tight">
               Turning Ideas Into Impactful Products <br />
               <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-300 to-pink-300">
-                2 Projects Delivered Successfully
+                3 Projects Delivered Successfully
               </span>
             </h3>
 
