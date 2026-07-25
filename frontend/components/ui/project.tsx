@@ -8,6 +8,24 @@ import Image from "next/image";
 const projects = [
   {
     id: 1,
+    title: "AttendX-AI",
+    description:
+      "AttendX-AI is an AI-powered smart attendance management system that uses face recognition to automate and secure attendance tracking for institutions. It provides dedicated dashboards for Admins, Teachers, and Students with real-time attendance verification, leave management, attendance history, and cloud-based image storage.",
+    image: "/attendx.png",
+    techStack: [
+      "Full-Stack",
+      "AI / Machine Learning",
+      "OpenCV",
+      "InsightFace",
+      "Face Recognition",
+      "Chat GPT",
+      "System Deployment",
+    ],
+    liveUrl: "https://attendx-ai.vercel.app/",
+    githubUrl: "https://github.com/hemantgupta98/AttendX-AI",
+  },
+  {
+    id: 2,
     title: "SwiftRide",
     description:
       "Full-stack  service like SwiftRide  is an on-demand bike taxi platform that connects riders with nearby drivers through a mobile app for quick and affordable transportation..",
@@ -25,7 +43,7 @@ const projects = [
     liveUrl: "https://swift-ride-seven.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "SaaS Project management System",
     description:
       "Full-stack task management application designed to help users organize and track their work efficiently.",
