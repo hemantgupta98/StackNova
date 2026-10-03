@@ -109,6 +109,7 @@ export default function CallToActionPage() {
               Cookie Policy
             </span>
           </div>
+          <p>Last updated : 03 Oct 2026</p>
           <div>
             {selectedService === "privacy" && (
               <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
