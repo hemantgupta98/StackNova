@@ -46,7 +46,7 @@ const projects = [
     title: "OriginBites – Jharkhand's Authentic Food Marketplace",
     description:
       "Food-Tech food marketplace designed to connect customers with authentic traditional sweets and food products from different districts of Jharkhand.",
-    image: "/originbites.png",
+    image: "/project3.png",
     techStack: [
       "Next.js",
       "React",
