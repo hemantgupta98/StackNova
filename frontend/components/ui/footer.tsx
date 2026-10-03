@@ -100,7 +100,7 @@ export default function CallToActionPage() {
               onClick={() => setSelectedService("term")}
               className="cursor-pointer hover:text-foreground"
             >
-              Terms of Service
+              Terms of Services
             </span>
             <span
               onClick={() => setSelectedService("cookie")}
