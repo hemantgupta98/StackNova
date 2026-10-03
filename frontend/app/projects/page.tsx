@@ -186,8 +186,8 @@ export default function Home() {
               className="grid sm:grid-cols-3 gap-4"
             >
               {[
-                { value: "+42%", label: "Efficiency Boost" },
-                { value: "2", label: "Projects Delivered" },
+                { value: "+64%", label: "Efficiency Boost" },
+                { value: "4", label: "Projects Delivered" },
                 { value: "100%", label: "Client Satisfaction" },
               ].map((item) => (
                 <motion.div
@@ -305,7 +305,7 @@ export default function Home() {
             <h3 className="text-3xl md:text-4xl font-bold leading-tight">
               Turning Ideas Into Impactful Products <br />
               <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-300 to-pink-300">
-                3 Projects Delivered Successfully
+                4 Projects Delivered Successfully
               </span>
             </h3>
 

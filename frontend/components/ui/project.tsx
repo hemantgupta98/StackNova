@@ -28,7 +28,7 @@ const projects = [
     id: 2,
     title: "SwiftRide",
     description:
-      "Full-stack  service like SwiftRide  is an on-demand bike taxi platform that connects riders with nearby drivers through a mobile app for quick and affordable transportation..",
+      "SwiftRide service like SwiftRide  is an on-demand bike taxi platform that connects riders with nearby drivers through a mobile app for quick and affordable transportation..",
     image: "/project1.png",
     techStack: [
       "Full-Stack",
@@ -39,11 +39,26 @@ const projects = [
       "OpenStreetMap",
       "Leaflet",
     ],
-    // Leave liveUrl undefined while the demo is not available (do not call alert at module load)
     liveUrl: "https://swift-ride-seven.vercel.app/",
   },
   {
     id: 3,
+    title: "OriginBites – Jharkhand's Authentic Food Marketplace",
+    description:
+      "Food-Tech food marketplace designed to connect customers with authentic traditional sweets and food products from different districts of Jharkhand.",
+    image: "/originbites.png",
+    techStack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "MongoDB",
+      "Resend",
+    ],
+    liveUrl: "https://originbites.vercel.app/",
+  },
+  {
+    id: 4,
     title: "SaaS Project management System",
     description:
       "Full-stack task management application designed to help users organize and track their work efficiently.",
